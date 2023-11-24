@@ -7,6 +7,7 @@ import DashbaordLayout from "../Layout/DashbaordLayout";
 import Dashbaord from "../Pages/Dashboard/Dashbaord";
 import UserProfile from "../Pages/Dashboard/Users/UserProfile/UserProfile";
 import AddProducts from "../Pages/Dashboard/Users/AddProducts/AddProducts";
+import MyProducts from "../Pages/Dashboard/Users/MyProducts/MyProducts";
 
 const routes = createBrowserRouter([
   {
@@ -39,12 +40,16 @@ const routes = createBrowserRouter([
         element: <Dashbaord />,
       },
       {
-        path: "/dashboard/user-profile",
+        path: "/dashboard/my-profile",
         element: <UserProfile />,
       },
       {
         path: "/dashboard/add-products",
         element: <AddProducts />,
+      },
+      {
+        path: "/dashboard/my-products",
+        element: <MyProducts />,
       },
     ],
   },

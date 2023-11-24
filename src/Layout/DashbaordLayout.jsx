@@ -5,7 +5,7 @@ const DashbaordLayout = () => {
     <div className="flex flex-col space-y-3 p-5">
       <Link
         className="text-white font-semibold text-xl"
-        to="/dashboard/user-profile"
+        to="/dashboard/my-profile"
       >
         {" "}
         My Profile{" "}
@@ -19,7 +19,7 @@ const DashbaordLayout = () => {
       </Link>
       <Link
         className="text-white font-semibold text-xl"
-        to="/dashboard/user-home"
+        to="/dashboard/my-products"
       >
         {" "}
         My Products{" "}

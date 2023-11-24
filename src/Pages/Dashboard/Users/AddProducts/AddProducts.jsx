@@ -2,9 +2,19 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../../hooks/useAuth";
 import { useState } from "react";
 import { WithContext as ReactTags } from "react-tag-input";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+
+const imageApi = import.meta.env.VITE_Image_Hosting_API;
+const imageHostingKey = `https://api.imgbb.com/1/upload?key=${imageApi}`;
+console.log(imageHostingKey);
+
 const AddProducts = () => {
   const { user } = useAuth();
   const [tags, setTags] = useState([]);
+  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+
   const allTag = tags.map((tag) => tag.text);
   console.log(allTag);
 
@@ -17,8 +27,33 @@ const AddProducts = () => {
   };
 
   const { register, handleSubmit } = useForm();
+
   const onSubmit = async (data) => {
-    console.log(data);
+    const imagefile = { image: data.image[0] };
+    const res = await axiosPublic.post(imageHostingKey, imagefile, {
+      headers: {
+        "content-Type": "multipart/form-data",
+      },
+    });
+
+    const productInfo = {
+      user_name: user?.displayName,
+      user_email: user?.email,
+      user_image: user?.photoURL,
+      product_name: data.name,
+      product_category: data.category,
+      product_image: res.data.data.display_url,
+      product_description: data.description,
+      product_tags: allTag,
+      vote: 0,
+      status: "pending",
+      external_link: data.links,
+    };
+    console.log(productInfo);
+
+    axiosSecure.post("/api/v1/add-product", productInfo).then((res) => {
+      console.log(res.data);
+    });
   };
 
   return (
