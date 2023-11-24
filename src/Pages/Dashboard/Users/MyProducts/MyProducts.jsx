@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
 import useProducts from "../../../../hooks/useProducts";
 
 const MyProducts = () => {
   const [products] = useProducts();
-  console.log(products);
 
   return (
     <div>
@@ -21,8 +21,6 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-
             {products.map((product, index) => (
               <tr key={product._id}>
                 <td>{index + 1}</td>
@@ -45,7 +43,9 @@ const MyProducts = () => {
                 <td>{product.vote}</td>
                 <td>{product.status}</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">Edit</button>
+                  <Link to={`/dashboard/update-product/${product._id}`}>
+                    <button className="btn btn-ghost btn-xs">Edit</button>
+                  </Link>
                 </th>
                 <th>
                   <button className="btn btn-ghost btn-xs">Delete</button>

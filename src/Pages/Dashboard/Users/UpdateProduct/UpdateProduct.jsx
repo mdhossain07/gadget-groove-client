@@ -1,22 +1,31 @@
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
-import { useState } from "react";
-import { WithContext as ReactTags } from "react-tag-input";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
+import { WithContext as ReactTags } from "react-tag-input";
+import useProducts from "../../../../hooks/useProducts";
+import { useLoaderData, useParams } from "react-router-dom";
 
 const imageApi = import.meta.env.VITE_Image_Hosting_API;
 const imageHostingKey = `https://api.imgbb.com/1/upload?key=${imageApi}`;
 
-const AddProducts = () => {
-  const { user } = useAuth();
+const UpdateProduct = () => {
   const [tags, setTags] = useState([]);
+  const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const [product, setProduct] = useState();
+  const { id } = useParams();
+  console.log(product);
+
+  useEffect(() => {
+    axiosPublic
+      .get(`/api/v1/product/${id}`)
+      .then((res) => setProduct(res.data));
+  }, [axiosPublic, id]);
 
   const allTag = tags.map((tag) => tag.text);
-  console.log(allTag);
 
   const handleAddition = (tag) => {
     setTags([...tags, tag]);
@@ -49,18 +58,7 @@ const AddProducts = () => {
       status: "pending",
       external_link: data.links,
     };
-
-    axiosSecure.post("/api/v1/add-product", productInfo).then((res) => {
-      if (res.data.insertedId) {
-        Swal.fire({
-          title: "Done!",
-          text: "New Product is added!",
-          icon: "success",
-        });
-      }
-    });
   };
-
   return (
     <div>
       <form
@@ -69,14 +67,18 @@ const AddProducts = () => {
       >
         <label htmlFor="">Product Name *</label>
         <br />
-        <input className="w-full py-2 my-2" {...register("name")} />
+        <input
+          className="w-full py-2 my-2"
+          {...register("name")}
+          defaultValue={product.product_name}
+        />
         <div className="flex justify-between gap-10">
           <div className="flex-1">
             <label htmlFor="">Select Category *</label>
             <br />
             <select
+              defaultValue={product.product_category}
               className="py-2 w-full my-2"
-              defaultValue="default"
               {...register("category")}
             >
               <option value="phone">phone</option>
@@ -102,10 +104,15 @@ const AddProducts = () => {
           {...register("description")}
           cols="50"
           rows="5"
+          defaultValue={product.product_description}
         ></textarea>
         <br />
         <label htmlFor="">External Links</label>
-        <input className="py-2 my-2 w-full" {...register("links")} />
+        <input
+          className="py-2 my-2 w-full"
+          {...register("links")}
+          defaultValue={product.external_link}
+        />
         <br />
         <input
           {...register("image")}
@@ -134,10 +141,14 @@ const AddProducts = () => {
         <div className="flex-1">
           <img className="w-[80px] rounded-full" src={user?.photoURL} alt="" />
         </div>
-        <input className="btn btn-warning" type="submit" value="Add Product" />
+        <input
+          className="btn btn-warning"
+          type="submit"
+          value="Update Product"
+        />
       </form>
     </div>
   );
 };
 
-export default AddProducts;
+export default UpdateProduct;

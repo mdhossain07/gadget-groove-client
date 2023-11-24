@@ -8,6 +8,7 @@ import Dashbaord from "../Pages/Dashboard/Dashbaord";
 import UserProfile from "../Pages/Dashboard/Users/UserProfile/UserProfile";
 import AddProducts from "../Pages/Dashboard/Users/AddProducts/AddProducts";
 import MyProducts from "../Pages/Dashboard/Users/MyProducts/MyProducts";
+import UpdateProduct from "../Pages/Dashboard/Users/UpdateProduct/UpdateProduct";
 
 const routes = createBrowserRouter([
   {
@@ -50,6 +51,11 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/my-products",
         element: <MyProducts />,
+      },
+      {
+        path: "/dashboard/update-product/:id",
+        element: <UpdateProduct />,
+        loader: ({ params }) => fetch(`/api/v1/product/${params.id}`),
       },
     ],
   },
