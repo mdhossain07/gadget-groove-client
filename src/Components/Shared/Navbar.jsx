@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import Container from "../Shared/Container";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  // const { user } = useAuth();
-  const user = "false";
+  const { user, logOut } = useAuth();
+
   const navItems = (
     <>
       <li>
@@ -15,6 +16,16 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  const handleLogOut = () => {
+    logOut().then(() => {
+      Swal.fire({
+        title: "Done!",
+        text: "User Logged Out!",
+        icon: "success",
+      });
+    });
+  };
   return (
     <Container>
       <div>
@@ -44,16 +55,41 @@ const Navbar = () => {
                 {navItems}
               </ul>
             </div>
-            <a className="btn btn-ghost text-xl">daisyUI</a>
+            <Link to="/" className="text-xl font-semibold">
+              Gadget Groove
+            </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{navItems}</ul>
           </div>
 
           <div className="navbar-end">
-            <Link to="/login" className="btn">
-              Login
-            </Link>
+            {user ? (
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img alt={user?.displayName} src={user?.photoURL} />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <Link to="/dashboard" className="justify-between">
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <a onClick={handleLogOut}>Logout</a>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <Link to="/login" className="btn">
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>

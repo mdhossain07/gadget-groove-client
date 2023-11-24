@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import SocialLogin from "../../Components/Shared/SocialLogin";
 
 const Login = () => {
   useEffect(() => {
@@ -10,24 +12,32 @@ const Login = () => {
   }, []);
 
   const { register, handleSubmit } = useForm();
-  // const { loginUser } = useAuth();
+  const { loginUser } = useAuth();
   const navigate = useNavigate();
   const onSubmit = (data) => {
-    loginUser(data.email, data.password).then((res) => {
-      Swal.fire({
-        title: "Good job!",
-        text: "User Logged in",
-        icon: "success",
+    loginUser(data.email, data.password)
+      .then((res) => {
+        Swal.fire({
+          title: "Good job!",
+          text: "User Logged in",
+          icon: "success",
+        });
+        console.log(res.user);
+        navigate("/");
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Login Failed",
+          text: `${err.message}`,
+          icon: "error",
+        });
       });
-      console.log(res.user);
-      navigate("/");
-    });
   };
   return (
     <div className="md:flex-1 hero min-h-screen bg-base-200">
       <div className="hero-content flex-col ">
         <div className="text-center ">
-          <h1 className="text-5xl font-bold">Sign in to Doc House</h1>
+          <h1 className="text-5xl font-bold">Sign in to Gadget Groove</h1>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -65,6 +75,8 @@ const Login = () => {
                 Login Now
               </button>
             </div>
+
+            <SocialLogin />
             <p>
               New to this website?{" "}
               <Link className="text-green-600 font-medium" to="/register">

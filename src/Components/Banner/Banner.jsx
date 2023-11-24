@@ -3,21 +3,22 @@ import banner from "../../assets/images/pexels-michelangelo-buonarroti-8728388.j
 const Banner = () => {
   return (
     <div
-      className="hero min-h-screen"
+      className="hero h-[90vh] bg-fixed"
       style={{
         backgroundImage: `url(${banner})`,
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
-        <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+        <div className="max-w-xl">
+          <h1 className="mb-5 text-5xl font-bold">
+            New Collection coming to town
+          </h1>
           <p className="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Introducing fashionable & gorgeous gadgets from design to stylish
+            wearable
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <button className="btn btn-primary">Explore Now</button>
         </div>
       </div>
     </div>
