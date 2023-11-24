@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import { WithContext as ReactTags } from "react-tag-input";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const imageApi = import.meta.env.VITE_Image_Hosting_API;
 const imageHostingKey = `https://api.imgbb.com/1/upload?key=${imageApi}`;
@@ -57,6 +58,13 @@ const UpdateProduct = () => {
       .patch(`/api/v1/update-product/${id}`, productInfo)
       .then((res) => {
         console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Done!",
+            text: "Your product been updated.",
+            icon: "success",
+          });
+        }
       });
   };
   return (

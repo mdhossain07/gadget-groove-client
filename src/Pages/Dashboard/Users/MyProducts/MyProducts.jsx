@@ -1,8 +1,39 @@
 import { Link } from "react-router-dom";
 import useProducts from "../../../../hooks/useProducts";
+import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const MyProducts = () => {
-  const [products] = useProducts();
+  const [products, refetch] = useProducts();
+  const axiosPublic = useAxiosPublic();
+
+  const handleRemove = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/api/v1/delete-product/${id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your product been deleted.",
+              icon: "success",
+            });
+          }
+          refetch();
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -44,11 +75,18 @@ const MyProducts = () => {
                 <td>{product.status}</td>
                 <th>
                   <Link to={`/dashboard/update-product/${product._id}`}>
-                    <button className="btn btn-ghost btn-xs">Edit</button>
+                    <button className="p-3 rounded-lg bg-green-500 text-white">
+                      <FaRegEdit className="text-md" />
+                    </button>
                   </Link>
                 </th>
                 <th>
-                  <button className="btn btn-ghost btn-xs">Delete</button>
+                  <button
+                    onClick={() => handleRemove(product._id)}
+                    className="p-3 rounded-lg bg-red-500 text-white"
+                  >
+                    <FaTrashAlt className="text-md" />
+                  </button>
                 </th>
               </tr>
             ))}

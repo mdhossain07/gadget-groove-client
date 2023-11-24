@@ -4,14 +4,14 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 const useProducts = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { data: products = [] } = useQuery({
+  const { data: products = [], refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await axiosPublic.get("/api/v1/products");
       return res.data;
     },
   });
-  return [products];
+  return [products, refetch];
 };
 
 export default useProducts;

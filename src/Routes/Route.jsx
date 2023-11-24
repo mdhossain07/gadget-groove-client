@@ -9,6 +9,8 @@ import UserProfile from "../Pages/Dashboard/Users/UserProfile/UserProfile";
 import AddProducts from "../Pages/Dashboard/Users/AddProducts/AddProducts";
 import MyProducts from "../Pages/Dashboard/Users/MyProducts/MyProducts";
 import UpdateProduct from "../Pages/Dashboard/Users/UpdateProduct/UpdateProduct";
+import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import PrivateRoute from "./PrivateRoute";
 
 const routes = createBrowserRouter([
   {
@@ -18,6 +20,15 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/product/:id",
+        element: (
+          <PrivateRoute>
+            <ProductDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => fetch(`/api/v1/product/${params.id}`),
       },
     ],
   },
@@ -55,7 +66,6 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/update-product/:id",
         element: <UpdateProduct />,
-        loader: ({ params }) => fetch(`/api/v1/product/${params.id}`),
       },
     ],
   },
