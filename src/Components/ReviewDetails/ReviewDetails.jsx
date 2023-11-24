@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { useParams } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
-const ReviewDetails = () => {
+const ReviewDetails = ({ id }) => {
   const axiosPublic = useAxiosPublic();
-  const { id } = useParams();
   const { data: reviews = [] } = useQuery({
     queryKey: ["reviews"],
     queryFn: async () => {
@@ -15,7 +13,7 @@ const ReviewDetails = () => {
 
   return (
     <div>
-      <h2>Review Section: {reviews.length}</h2>
+      <h2 className="text-2xl font-medium mt-10">Review Section: </h2>
       {reviews.map((item, index) => (
         <p key={index}>{item.review}</p>
       ))}

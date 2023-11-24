@@ -2,12 +2,10 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
 
-const Reviews = () => {
+const Reviews = ({ id }) => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const { id } = useParams();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {

@@ -123,12 +123,17 @@ const AddProducts = () => {
             <input
               className="w-full py-2 my-2"
               defaultValue={user?.displayName}
+              disabled
             />
           </div>
           <div className="flex-1">
             <label htmlFor="">Owners Email</label>
             <br />
-            <input className="py-2 my-2 w-full" defaultValue={user?.email} />
+            <input
+              className="py-2 my-2 w-full"
+              defaultValue={user?.email}
+              disabled
+            />
           </div>
         </div>
         <div className="flex-1">
