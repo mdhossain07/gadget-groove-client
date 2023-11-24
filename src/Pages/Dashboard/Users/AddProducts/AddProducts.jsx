@@ -4,10 +4,10 @@ import { useState } from "react";
 import { WithContext as ReactTags } from "react-tag-input";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const imageApi = import.meta.env.VITE_Image_Hosting_API;
 const imageHostingKey = `https://api.imgbb.com/1/upload?key=${imageApi}`;
-console.log(imageHostingKey);
 
 const AddProducts = () => {
   const { user } = useAuth();
@@ -49,10 +49,15 @@ const AddProducts = () => {
       status: "pending",
       external_link: data.links,
     };
-    console.log(productInfo);
 
     axiosSecure.post("/api/v1/add-product", productInfo).then((res) => {
-      console.log(res.data);
+      if (res.data.insertedId) {
+        Swal.fire({
+          title: "Done!",
+          text: "New Product is added!",
+          icon: "success",
+        });
+      }
     });
   };
 
