@@ -5,10 +5,8 @@ import { WithContext as ReactTags } from "react-tag-input";
 const AddProducts = () => {
   const { user } = useAuth();
   const [tags, setTags] = useState([]);
-  //   console.log(tags);
   const allTag = tags.map((tag) => tag.text);
   console.log(allTag);
-  //   console.log(tagText);
 
   const handleAddition = (tag) => {
     setTags([...tags, tag]);
@@ -26,7 +24,7 @@ const AddProducts = () => {
   return (
     <div>
       <form
-        className="bg-[#F3F3F3] font-medium text-[#444444] p-10 lg:w-1/2 mx-auto space-y-3"
+        className="bg-[#F3F3F3] font-medium text-[#444444] mt-10 p-10 lg:w-1/2 mx-auto space-y-3"
         onSubmit={handleSubmit(onSubmit)}
       >
         <label htmlFor="">Product Name *</label>
