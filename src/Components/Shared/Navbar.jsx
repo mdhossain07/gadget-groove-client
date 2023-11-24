@@ -56,7 +56,7 @@ const Navbar = () => {
               </ul>
             </div>
             <Link to="/" className="text-xl font-semibold">
-              Gadget Groove
+              <img className="w-[100px]" src="/gadget groove.png" alt="" />
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">

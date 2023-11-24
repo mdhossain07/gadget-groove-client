@@ -10,25 +10,28 @@ const Register = () => {
   useEffect(() => {
     document.title = "Gadget Groove | Register";
   }, []);
-  const { createUser, updateUser, googleLogin } = useAuth();
+  const { createUser, updateUser } = useAuth();
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
 
   const onSubmit = (data) => {
-    console.log(data);
-    createUser(data.email, data.password).then((res) => {
+    createUser(data.email, data.password).then(() => {
       updateUser(data.name, data.image)
         .then(() => {
-          axiosPublic.post("/users", data).then((res) => {
-            Swal.fire({
-              title: "Good job!",
-              text: "User is created!",
-              icon: "success",
-            });
-            console.log(res.data);
+          const userInfo = {
+            name: data?.name,
+            email: data?.email,
+          };
+          axiosPublic.post("/api/v1/add-user", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                title: "Good job!",
+                text: "User is created!",
+                icon: "success",
+              });
+            }
           });
-          console.log(res.user);
           navigate("/");
         })
         .catch((err) => {
@@ -72,7 +75,7 @@ const Register = () => {
                 <span className="label-text">Image URL</span>
               </label>
               <input
-                {...register("image", { required: true })}
+                {...register("image")}
                 type="text"
                 placeholder="image url"
                 className="input input-bordered"
@@ -93,7 +96,7 @@ const Register = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button className="bg-[#3956be] hover:bg-purple-800 p-3 text-white rounded-lg">
+              <button className="bg-[#8C52FF] hover:bg-[#FF66C4] p-3 text-white rounded-lg">
                 Create Account
               </button>
             </div>

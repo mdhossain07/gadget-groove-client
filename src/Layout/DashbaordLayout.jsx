@@ -14,17 +14,25 @@ const DashbaordLayout = () => {
         className="text-white font-semibold text-xl"
         to="/dashboard/add-products"
       >
-        {" "}
-        Add Products{" "}
+        Add Products
       </Link>
+
       <Link
         className="text-white font-semibold text-xl"
         to="/dashboard/my-products"
       >
-        {" "}
-        My Products{" "}
+        My Products
       </Link>
+
+      <Link
+        className="text-white font-semibold text-xl"
+        to="/dashboard/product-review"
+      >
+        Product Review
+      </Link>
+
       <hr />
+
       {/* Shared Nav */}
       <Link className="text-white font-semibold text-xl" to="/">
         {" "}

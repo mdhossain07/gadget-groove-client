@@ -25,6 +25,7 @@ const ProductDetails = () => {
       <img src={data?.product_image} alt="" />
       <p>tags: {data?.product_tags}</p>
       <p>Total Vote: {data?.vote}</p>
+      <p>status: {data?.status}</p>
       <div className="flex gap-10">
         {/* <button className="btn btn-primary">UpVote</button> */}
         <UpVote id={id} />
