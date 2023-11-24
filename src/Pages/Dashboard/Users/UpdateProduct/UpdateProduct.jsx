@@ -4,8 +4,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import { WithContext as ReactTags } from "react-tag-input";
-import useProducts from "../../../../hooks/useProducts";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const imageApi = import.meta.env.VITE_Image_Hosting_API;
 const imageHostingKey = `https://api.imgbb.com/1/upload?key=${imageApi}`;
@@ -46,18 +45,19 @@ const UpdateProduct = () => {
     });
 
     const productInfo = {
-      user_name: user?.displayName,
-      user_email: user?.email,
-      user_image: user?.photoURL,
       product_name: data.name,
       product_category: data.category,
       product_image: res.data.data.display_url,
       product_description: data.description,
       product_tags: allTag,
-      vote: 0,
-      status: "pending",
       external_link: data.links,
     };
+
+    axiosSecure
+      .patch(`/api/v1/update-product/${id}`, productInfo)
+      .then((res) => {
+        console.log(res.data);
+      });
   };
   return (
     <div>
