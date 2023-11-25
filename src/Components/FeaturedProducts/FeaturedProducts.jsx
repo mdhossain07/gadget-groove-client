@@ -1,12 +1,11 @@
 import Title from "../Shared/Title";
-import useProducts from "../../hooks/useProducts";
-import UpVote from "../../Components/Shared/UpVote";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import ProductsCard from "../Shared/ProductsCard";
 
 const FeaturedProducts = () => {
   const axiosPublic = useAxiosPublic();
-  const { data: products = [] } = useQuery({
+  const { data: products = [], isPending } = useQuery({
     queryKey: ["featured products"],
     queryFn: async () => {
       const res = await axiosPublic.get(
@@ -16,26 +15,18 @@ const FeaturedProducts = () => {
     },
   });
 
-  console.log(products);
   return (
     <div>
-      <Title />
-
-      {products.map((product) => (
-        <div key={product._id} className="card w-96 bg-base-100 shadow-xl">
-          <figure>
-            <img src={product.product_image} alt={product.product_name} />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">{product.product_name}</h2>
-            <p>{product.product_description}</p>
-            <div className="card-actions justify-between gap-10">
-              <UpVote />
-              <button className="btn btn-neutral">View Details</button>
-            </div>
-          </div>
+      <Title subHeading={"latest gadgets"} heading={"Featured Products"} />
+      {isPending ? (
+        <span className="mt-20 loading loading-spinner text-info text-2xl text-center"></span>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
+          {products?.map((product) => (
+            <ProductsCard key={product._id} product={product} />
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };

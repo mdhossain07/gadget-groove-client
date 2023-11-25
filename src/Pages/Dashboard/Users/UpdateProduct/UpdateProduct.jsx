@@ -78,14 +78,14 @@ const UpdateProduct = () => {
         <input
           className="w-full py-2 my-2"
           {...register("name")}
-          defaultValue={product.product_name}
+          defaultValue={product?.product_name}
         />
         <div className="flex justify-between gap-10">
           <div className="flex-1">
             <label htmlFor="">Select Category *</label>
             <br />
             <select
-              defaultValue={product.product_category}
+              defaultValue={product?.product_category}
               className="py-2 w-full my-2"
               {...register("category")}
             >
@@ -112,14 +112,14 @@ const UpdateProduct = () => {
           {...register("description")}
           cols="50"
           rows="5"
-          defaultValue={product.product_description}
+          defaultValue={product?.product_description}
         ></textarea>
         <br />
         <label htmlFor="">External Links</label>
         <input
           className="py-2 my-2 w-full"
           {...register("links")}
-          defaultValue={product.external_link}
+          defaultValue={product?.external_link}
         />
         <br />
         <input

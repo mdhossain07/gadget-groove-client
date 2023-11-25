@@ -12,6 +12,7 @@ import UpdateProduct from "../Pages/Dashboard/Users/UpdateProduct/UpdateProduct"
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import PrivateRoute from "./PrivateRoute";
 import ProductReview from "../Pages/Dashboard/Moderator/ProductReview/ProductReview";
+import Products from "../Pages/Products/Products";
 
 const routes = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
       },
       {
         path: "/product/:id",

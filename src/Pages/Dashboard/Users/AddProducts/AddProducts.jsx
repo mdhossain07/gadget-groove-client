@@ -48,6 +48,7 @@ const AddProducts = () => {
       vote: 0,
       status: "pending",
       external_link: data.links,
+      timestamp: new Date(),
     };
 
     axiosSecure.post("/api/v1/add-product", productInfo).then((res) => {
