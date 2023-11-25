@@ -43,7 +43,7 @@ const ProductReview = () => {
                   <br />
                 </td>
                 <td>
-                  <Featured id={product._id} />
+                  <Featured id={product._id} status={product.status} />
                 </td>
                 <td>
                   <Accept id={product._id} />

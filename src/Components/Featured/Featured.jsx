@@ -1,8 +1,9 @@
 import { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
-const Featured = ({ id }) => {
+const Featured = ({ id, status }) => {
   const axiosPublic = useAxiosPublic();
   const [featured, setFeatured] = useState(false);
 
@@ -20,19 +21,21 @@ const Featured = ({ id }) => {
   };
 
   axiosPublic.get(`/api/v1/product/${id}`).then((res) => {
-    if (res.data.featured === "yes" && res.data.status === "accepted") {
+    if (res.data.featured === "yes") {
       setFeatured(true);
     }
   });
 
   return (
     <div>
-      <button
-        onClick={() => handleFeatured(id)}
-        className={`btn btn-primary ${featured && "enabled"}`}
-      >
-        {featured ? "Featured" : "Make Featured"}
-      </button>
+      {status === "accepted" ? (
+        <button
+          onClick={() => handleFeatured(id)}
+          className={`btn btn-primary`}
+        >
+          {featured ? "Featured" : "Make Featured"}
+        </button>
+      ) : null}
     </div>
   );
 };
