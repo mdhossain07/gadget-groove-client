@@ -5,6 +5,7 @@ import Reviews from "../../Components/Reviews/Reviews";
 import ReviewDetails from "../../Components/ReviewDetails/ReviewDetails";
 import UpVote from "../../Components/Shared/UpVote";
 import DownVote from "../../Components/Shared/DownVote";
+import Swal from "sweetalert2";
 
 const ProductDetails = () => {
   const axiosPublic = useAxiosPublic();
@@ -18,6 +19,23 @@ const ProductDetails = () => {
     },
   });
 
+  const handleReport = () => {
+    const productInfo = {
+      product_id: id,
+      product_name: data?.product_name,
+      product_image: data?.product_image,
+    };
+    axiosPublic.post(`/api/v1/make-report`, productInfo).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          title: "Done!",
+          text: "You reported this product!",
+          icon: "success",
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <h2>{data?.product_name}</h2>
@@ -30,7 +48,9 @@ const ProductDetails = () => {
         {/* <button className="btn btn-primary">UpVote</button> */}
         <UpVote id={id} />
         <DownVote id={id} />
-        <button className="btn btn-warning">Report</button>
+        <button onClick={() => handleReport(id)} className="btn btn-warning">
+          Report
+        </button>
       </div>
       <ReviewDetails id={id} />
       <Reviews id={id} />

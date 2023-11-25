@@ -31,6 +31,13 @@ const DashbaordLayout = () => {
         Product Review
       </Link>
 
+      <Link
+        className="text-white font-semibold text-xl"
+        to="/dashboard/reported-contents"
+      >
+        Reported Contents
+      </Link>
+
       <hr />
 
       {/* Shared Nav */}

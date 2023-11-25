@@ -13,6 +13,7 @@ import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import PrivateRoute from "./PrivateRoute";
 import ProductReview from "../Pages/Dashboard/Moderator/ProductReview/ProductReview";
 import Products from "../Pages/Products/Products";
+import ReportedContents from "../Pages/Dashboard/Moderator/ReportedContents/ReportedContents";
 
 const routes = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/product-review",
         element: <ProductReview />,
+      },
+      {
+        path: "/dashboard/reported-contents",
+        element: <ReportedContents />,
       },
     ],
   },

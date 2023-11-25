@@ -10,7 +10,10 @@ const ProductsCard = ({ product }) => {
     vote,
     _id,
     user_email,
+    product_tags,
   } = product;
+  const tags = product_tags.join(", ");
+
   return (
     <div className="card w-9/12 mx-auto bg-base-100 shadow-xl">
       <figure>
@@ -20,12 +23,13 @@ const ProductsCard = ({ product }) => {
           alt={product_name}
         />
       </figure>
-      <div className="card-body">
+      <div className="card-body flex">
         <Link to={`/product/${_id}`}>
           <h2 className="card-title">{product_name}</h2>
         </Link>
         <p>{product_description}</p>
-        <div className="flex gap-3 items-center ">
+        <p>tags: {tags}</p>
+        <div className="flex gap-3 items-center flex-1">
           <p>Vote Count: {vote}</p>
         </div>
         <div className="card-actions justify-start">

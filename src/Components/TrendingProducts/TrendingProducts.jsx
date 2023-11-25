@@ -2,9 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import Title from "../Shared/Title";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import ProductsCard from "../Shared/ProductsCard";
+
 const TrendingProducts = () => {
   const axiosPublic = useAxiosPublic();
-  const { data: products = [], isLoading } = useQuery({
+  const { data: products = [], isPending } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/v1/trending-products`);
@@ -16,7 +17,7 @@ const TrendingProducts = () => {
     <div>
       <Title subHeading={"latest gadgets"} heading={"Trending Products"} />
 
-      {isLoading ? (
+      {isPending ? (
         <span className="mt-20 loading loading-spinner text-info text-2xl text-center"></span>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center gap-5">
