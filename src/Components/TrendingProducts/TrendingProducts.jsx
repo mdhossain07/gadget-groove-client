@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import Title from "../Shared/Title";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import ProductsCard from "../Shared/ProductsCard";
+import { Link } from "react-router-dom";
 
 const TrendingProducts = () => {
   const axiosPublic = useAxiosPublic();
   const { data: products = [], isPending } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["trending"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/v1/trending-products`);
       return res.data;
@@ -24,6 +25,10 @@ const TrendingProducts = () => {
           {products.map((product) => (
             <ProductsCard key={product._id} product={product} />
           ))}
+
+          <Link to="/products">
+            <button className="btn btn-neutral my-10 ">All Products </button>
+          </Link>
         </div>
       )}
     </div>

@@ -14,6 +14,8 @@ import PrivateRoute from "./PrivateRoute";
 import ProductReview from "../Pages/Dashboard/Moderator/ProductReview/ProductReview";
 import Products from "../Pages/Products/Products";
 import ReportedContents from "../Pages/Dashboard/Moderator/ReportedContents/ReportedContents";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUser/ManageUsers";
+import AdminRoute from "./AdminRoute";
 
 const routes = createBrowserRouter([
   {
@@ -81,6 +83,14 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/reported-contents",
         element: <ReportedContents />,
+      },
+      {
+        path: "/dashboard/manage-users",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
       },
     ],
   },

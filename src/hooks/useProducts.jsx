@@ -5,7 +5,7 @@ const useProducts = () => {
   const axiosPublic = useAxiosPublic();
 
   const { data: products = [], refetch } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["allProducts"],
     queryFn: async () => {
       const res = await axiosPublic.get("/api/v1/products");
       return res.data;

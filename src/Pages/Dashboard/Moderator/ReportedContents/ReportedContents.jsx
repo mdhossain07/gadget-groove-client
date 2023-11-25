@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
@@ -14,8 +14,6 @@ const ReportedContents = () => {
       return res.data;
     },
   });
-
-  console.log(data);
 
   const handleRemove = (id) => {
     console.log(id);

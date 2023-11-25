@@ -22,7 +22,7 @@ const Login = () => {
           text: "User Logged in",
           icon: "success",
         });
-        console.log(res.user);
+
         navigate("/");
       })
       .catch((err) => {

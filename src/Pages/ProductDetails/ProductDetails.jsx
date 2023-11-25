@@ -12,7 +12,7 @@ const ProductDetails = () => {
   const { id } = useParams();
 
   const { data } = useQuery({
-    queryKey: ["product"],
+    queryKey: ["productDetails"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/api/v1/product/${id}`);
       return res.data;

@@ -1,24 +1,27 @@
 import { Navigate } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
 import PropTypes from "prop-types";
 
-const PrivateRoute = ({ children }) => {
+const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
+  const [isAdmin, isAdminLoading] = useAdmin();
 
-  if (user) {
-    return children;
-  }
-
-  if (loading) {
+  if (loading || isAdminLoading) {
     return (
       <span className="mt-20 loading loading-spinner text-info tex-2xl text-center"></span>
     );
   }
-  return <Navigate to="/login" replace></Navigate>;
+
+  if (user && isAdmin) {
+    return children;
+  }
+
+  return <Navigate to="/login" replace />;
 };
 
-PrivateRoute.propTypes = {
+AdminRoute.propTypes = {
   children: PropTypes.node,
 };
 
-export default PrivateRoute;
+export default AdminRoute;
