@@ -13,16 +13,32 @@ const UpVote = ({ id, email }) => {
   const navigate = useNavigate();
 
   const handleUpvote = (id) => {
+    const voteInfo = {
+      user: user?.email,
+      product_id: id,
+    };
+
     if (user && user?.email) {
-      axiosPublic.patch(`/api/v1/increase-vote/${id}`).then((res) => {
-        if (res.data.modifiedCount > 0) {
+      axiosPublic.post("/api/v1/make-vote", voteInfo).then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          axiosPublic.patch(`/api/v1/increase-vote/${id}`).then((res) => {
+            if (res.data.modifiedCount > 0) {
+              Swal.fire({
+                title: "Good job!",
+                text: "You upvoted this product!",
+                icon: "success",
+              });
+              refetch();
+            }
+          });
+        } else {
           Swal.fire({
-            title: "Good job!",
-            text: "You upvoted this product!",
-            icon: "success",
+            title: "Failed!",
+            text: "You alreaddy upvoted this product!",
+            icon: "error",
           });
         }
-        refetch();
       });
     } else {
       Swal.fire({
@@ -40,6 +56,7 @@ const UpVote = ({ id, email }) => {
       });
     }
   };
+
   return (
     <div>
       <button

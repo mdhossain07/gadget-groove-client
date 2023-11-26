@@ -16,28 +16,32 @@ const Register = () => {
   const axiosPublic = useAxiosPublic();
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password).then(() => {
-      updateUser(data.name, data.image)
-        .then(() => {
-          const userInfo = {
-            name: data?.name,
-            email: data?.email,
-          };
-          axiosPublic.post("/api/v1/add-user", userInfo).then((res) => {
-            if (res.data.insertedId) {
-              Swal.fire({
-                title: "Good job!",
-                text: "User is created!",
-                icon: "success",
-              });
-            }
+    createUser(data.email, data.password)
+      .then(() => {
+        updateUser(data.name, data.image)
+          .then(() => {
+            const userInfo = {
+              name: data?.name,
+              email: data?.email,
+            };
+            axiosPublic.post("/api/v1/add-user", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                Swal.fire({
+                  title: "Good job!",
+                  text: "User is created!",
+                  icon: "success",
+                });
+              }
+            });
+            navigate("/");
+          })
+          .catch((err) => {
+            Swal.fire("Error!", err.message, "error");
           });
-          navigate("/");
-        })
-        .catch((err) => {
-          Swal.fire("Error!", err.message, "error");
-        });
-    });
+      })
+      .catch((err) => {
+        Swal.fire("Error!", err.message, "error");
+      });
   };
 
   return (

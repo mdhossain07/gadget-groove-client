@@ -3,10 +3,24 @@ import useProducts from "../../../../hooks/useProducts";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../../../hooks/useAuth";
 
 const MyProducts = () => {
-  const [products, refetch] = useProducts();
   const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
+  // const [products, refetch] = useProducts();
+  const { data: myProducts = [], refetch } = useQuery({
+    queryKey: ["myProducts", user?.email],
+    queryFn: async () => {
+      const res = await axiosPublic.get(
+        `/api/v1/user-product?email=${user?.email}`
+      );
+      return res.data;
+    },
+  });
+
+  console.log(myProducts);
 
   const handleRemove = (id) => {
     console.log(id);
@@ -52,7 +66,7 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, index) => (
+            {myProducts.map((product, index) => (
               <tr key={product._id}>
                 <td>{index + 1}</td>
                 <td>
