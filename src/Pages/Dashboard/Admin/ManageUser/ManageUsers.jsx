@@ -15,7 +15,6 @@ const ManageUsers = () => {
 
   const handleModerator = (user) => {
     axiosSecure.patch(`/api/v1/make-moderator/${user._id}`).then((res) => {
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         Swal.fire({
           title: "Done!",

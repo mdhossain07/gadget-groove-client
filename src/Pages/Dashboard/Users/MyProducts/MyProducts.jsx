@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import useProducts from "../../../../hooks/useProducts";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
@@ -9,7 +8,6 @@ import useAuth from "../../../../hooks/useAuth";
 const MyProducts = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
-  // const [products, refetch] = useProducts();
   const { data: myProducts = [], refetch } = useQuery({
     queryKey: ["myProducts", user?.email],
     queryFn: async () => {
@@ -19,8 +17,6 @@ const MyProducts = () => {
       return res.data;
     },
   });
-
-  console.log(myProducts);
 
   const handleRemove = (id) => {
     console.log(id);

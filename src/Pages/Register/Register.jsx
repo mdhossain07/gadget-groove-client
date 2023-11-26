@@ -23,6 +23,7 @@ const Register = () => {
             const userInfo = {
               name: data?.name,
               email: data?.email,
+              image: data?.image,
             };
             axiosPublic.post("/api/v1/add-user", userInfo).then((res) => {
               if (res.data.insertedId) {

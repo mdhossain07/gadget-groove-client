@@ -1,26 +1,34 @@
-import useAuth from "../../../../hooks/useAuth";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckoutForm from "../MyProducts/Payment/CheckoutForm";
+import { Elements } from "@stripe/react-stripe-js";
+import useUser from "../../../../hooks/useUser";
 
+const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 const UserProfile = () => {
-  const { user } = useAuth();
-  const isVerified = true;
+  const { userInfo } = useUser();
+  console.log(userInfo);
+
   return (
     <div>
-      <h2>Welcome Back, {user?.displayName}</h2>
-      <img className="w-[80px] rounded-full" src={user?.photoURL} alt="" />
-      <p>Email: {user?.email}</p>
-      {isVerified && <p>Membership Status: verified </p>}
+      <h2>Welcome Back, {userInfo?.name}</h2>
+      <img className="w-[80px] rounded-full" src={userInfo?.image} alt="" />
+      <p>Email: {userInfo?.email}</p>
+      {userInfo?.membershipStatus ? (
+        <p>Membership Status: {userInfo?.membershipStatus} </p>
+      ) : (
+        <p>Membership Status: not verified </p>
+      )}
       <p>
         To Enjoy more exciting features of our Webiste, Be a member of our
         website. Only on $99
       </p>
-      {/* <button className="btn btn-accent">Subscribe</button> */}
 
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button
-        className="btn"
+        className="btn btn-info"
         onClick={() => document.getElementById("my_modal_1").showModal()}
       >
-        Subscribe
+        Membership Subscribe
       </button>
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
@@ -28,6 +36,9 @@ const UserProfile = () => {
           <p className="py-4">
             Press ESC key or click the button below to close
           </p>
+          <Elements stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}

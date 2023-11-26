@@ -5,7 +5,6 @@ import useModerator from "../hooks/useModerator";
 const DashbaordLayout = () => {
   const [isAdmin] = useAdmin();
   const [isModerator] = useModerator();
-  console.log(isModerator);
 
   const dashboardMenu = (
     <div>

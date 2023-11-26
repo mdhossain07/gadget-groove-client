@@ -16,6 +16,7 @@ import Products from "../Pages/Products/Products";
 import ReportedContents from "../Pages/Dashboard/Moderator/ReportedContents/ReportedContents";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUser/ManageUsers";
 import AdminRoute from "./AdminRoute";
+import Payment from "../Pages/Dashboard/Users/MyProducts/Payment/Payment";
 
 const routes = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) => fetch(`/api/v1/product/${params.id}`),
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
     ],
   },
