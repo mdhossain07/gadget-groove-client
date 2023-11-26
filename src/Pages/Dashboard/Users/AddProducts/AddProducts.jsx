@@ -58,6 +58,12 @@ const AddProducts = () => {
           text: "New Product is added!",
           icon: "success",
         });
+      } else {
+        Swal.fire({
+          title: "Failed!",
+          text: "Only verified user can add multiple products!",
+          icon: "error",
+        });
       }
     });
   };
