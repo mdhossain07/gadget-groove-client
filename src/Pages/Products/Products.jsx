@@ -2,9 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import ProductsCard from "../../Components/Shared/ProductsCard";
 import Container from "../../Components/Shared/Container";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Products = () => {
+  useEffect(() => {
+    document.title = "Gadget Groove | Products";
+  }, []);
   const axiosPublic = useAxiosPublic();
 
   const { data, isPending } = useQuery({
@@ -16,9 +19,6 @@ const Products = () => {
       return res.data;
     },
   });
-
-  console.log(data);
-
   const [tags, setTags] = useState("");
   const [searchResults, setSearchResults] = useState(data);
 
@@ -28,13 +28,13 @@ const Products = () => {
       setSearchResults(res.data);
     });
   };
+
   console.log(searchResults);
 
   return (
     <div>
       <Container>
-        <h2 className="text-2xl font-medium">All Products: {data?.length}</h2>
-        <div className="form-control">
+        <div className="flex relative">
           <input
             type="text"
             placeholder="Search"
@@ -44,7 +44,7 @@ const Products = () => {
           />
           <button
             onClick={handleSearch}
-            className="btn btn-neutral w-1/2 mx-auto mt-5"
+            className="absolute right-0 md:right-20 bg-[#8C52FF] p-3 md:px-5 rounded-lg text-white "
           >
             Search
           </button>

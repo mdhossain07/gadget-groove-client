@@ -6,7 +6,6 @@ import useUser from "../../../../hooks/useUser";
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 const UserProfile = () => {
   const { userInfo } = useUser();
-  console.log(userInfo);
 
   return (
     <div>
@@ -32,10 +31,8 @@ const UserProfile = () => {
       </button>
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">
-            Press ESC key or click the button below to close
-          </p>
+          <h3 className="font-bold text-lg">Checkout Form</h3>
+          <p className="py-4">Please enter your Card info to Checkout</p>
           <Elements stripe={stripePromise}>
             <CheckoutForm />
           </Elements>

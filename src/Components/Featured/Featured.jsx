@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-import { useQuery } from "@tanstack/react-query";
+import PropTypes from "prop-types";
 
 const Featured = ({ id, status }) => {
   const axiosPublic = useAxiosPublic();
@@ -38,6 +38,11 @@ const Featured = ({ id, status }) => {
       ) : null}
     </div>
   );
+};
+
+Featured.propTypes = {
+  id: PropTypes.string,
+  status: PropTypes.string,
 };
 
 export default Featured;

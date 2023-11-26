@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
+import PropTypes from "prop-types";
 
 const Reviews = ({ id }) => {
   const { user } = useAuth();
@@ -50,11 +51,11 @@ const Reviews = ({ id }) => {
         <br />
 
         <hr />
-        <h2> Reviewers Info</h2>
+        <h2 className="text-xl font-medium text-blue-600"> Reviewers Info</h2>
 
         <div className="flex justify-between gap-10">
           <div className="flex-1">
-            <label htmlFor="">Name</label>
+            <label htmlFor="">Name: </label>
 
             <input
               className="w-full py-2 my-2"
@@ -79,6 +80,9 @@ const Reviews = ({ id }) => {
       </form>
     </div>
   );
+};
+Reviews.propTypes = {
+  id: PropTypes.string,
 };
 
 export default Reviews;

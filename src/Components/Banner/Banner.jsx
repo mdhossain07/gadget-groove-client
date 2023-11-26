@@ -18,7 +18,9 @@ const Banner = () => {
             Introducing fashionable & gorgeous gadgets from design to stylish
             wearable
           </p>
-          <button className="btn btn-primary">Explore Now</button>
+          <button className="bg-[#8C52FF] font-medium p-3 rounded-lg text-white">
+            Explore Now
+          </button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Container from "../Shared/Container";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
@@ -7,14 +7,29 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
 
   const navItems = (
-    <>
-      <li>
-        <Link to="/"> Home</Link>
-      </li>
-      <li>
-        <Link to="/products">Products</Link>
-      </li>
-    </>
+    <div className="flex flex-col md:flex-row gap-3">
+      <NavLink
+        className={({ isActive }) =>
+          isActive
+            ? " text-[#8C52FF] text-lg  font-semibold underline"
+            : "text-black text-lg  font-semibold"
+        }
+        to="/"
+      >
+        Home
+      </NavLink>
+
+      <NavLink
+        className={({ isActive }) =>
+          isActive
+            ? " text-[#8C52FF] text-lg  font-semibold underline"
+            : "text-black text-lg  font-semibold"
+        }
+        to="/products"
+      >
+        Products
+      </NavLink>
+    </div>
   );
 
   const handleLogOut = () => {
@@ -29,7 +44,7 @@ const Navbar = () => {
   return (
     <Container>
       <div>
-        <div className="navbar bg-base-100 ">
+        <div className="navbar bg-base-200`">
           <div className="navbar-start">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -76,12 +91,17 @@ const Navbar = () => {
                   className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <Link to="/dashboard" className="justify-between">
+                    <Link to="/dashboard" className="text-black font-medium">
                       Dashboard
                     </Link>
                   </li>
                   <li>
-                    <a onClick={handleLogOut}>Logout</a>
+                    <Link
+                      className="text-black font-medium"
+                      onClick={handleLogOut}
+                    >
+                      Logout
+                    </Link>
                   </li>
                 </ul>
               </div>

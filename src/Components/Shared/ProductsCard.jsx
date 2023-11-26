@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import UpVote from "./UpVote";
 import PropTypes from "prop-types";
+import Container from "../../Components/Shared/Container";
 
 const ProductsCard = ({ product }) => {
   const {
@@ -15,24 +16,24 @@ const ProductsCard = ({ product }) => {
   const tags = product_tags.join(", ");
 
   return (
-    <div className="card w-9/12 mx-auto bg-base-100 shadow-xl">
+    <div className="card w-full bg-base-100 shadow-xl">
       <figure>
         <img
-          className="h-[200px] p-2 rounded-lg"
+          className="h-[200px] w-full p-2 rounded-lg"
           src={product_image}
           alt={product_name}
         />
       </figure>
-      <div className="card-body flex">
+      <div className="card-body flex space-y-1">
         <Link to={`/product/${_id}`}>
           <h2 className="card-title">{product_name}</h2>
         </Link>
-        <p>{product_description}</p>
-        <p>tags: {tags}</p>
-        <div className="flex gap-3 items-center flex-1">
-          <p>Vote Count: {vote}</p>
+        <p className="text-gray-500">{product_description}</p>
+        <p className="text-gray-500 text-sm">tags: {tags}</p>
+        <div className="flex gap-3 items-center flex-grow">
+          <p className="text-gray-500 text-sm">upvotes: {vote}</p>
         </div>
-        <div className="card-actions justify-start">
+        <div className="card-actions justify-start flex-grow">
           <UpVote id={_id} email={user_email} />
         </div>
       </div>
