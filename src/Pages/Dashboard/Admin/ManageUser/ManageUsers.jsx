@@ -72,20 +72,32 @@ const ManageUsers = () => {
                 </td>
 
                 <td>
-                  <button
-                    onClick={() => handleModerator(user)}
-                    className="btn btn-neutral"
-                  >
-                    Make Moderator
-                  </button>
+                  {user?.role === "moderator" ? (
+                    <h2 className="font-semibold text-green-500 text-xl">
+                      Moderator
+                    </h2>
+                  ) : (
+                    <button
+                      onClick={() => handleModerator(user)}
+                      className="btn btn-neutral"
+                    >
+                      Make Moderator
+                    </button>
+                  )}
                 </td>
                 <td>
-                  <button
-                    onClick={() => handleAdmin(user)}
-                    className="btn btn-primary"
-                  >
-                    Make Admin
-                  </button>
+                  {user?.role === "admin" ? (
+                    <h2 className="font-semibold text-red-500 text-xl">
+                      Admin
+                    </h2>
+                  ) : (
+                    <button
+                      onClick={() => handleAdmin(user)}
+                      className="btn btn-primary"
+                    >
+                      Make Admin
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

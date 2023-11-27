@@ -8,6 +8,7 @@ const DashbaordLayout = () => {
 
   const dashboardMenu = (
     <div>
+      <img className="w-[200px]" src="/gadget groove.png" alt="" />
       {isAdmin && (
         <div className="flex flex-col space-y-3 p-5">
           <Link
@@ -24,7 +25,7 @@ const DashbaordLayout = () => {
           </Link>
           <Link
             className="text-white font-semibold text-xl"
-            to="/dashboard/manage-users"
+            to="/dashboard/manage-coupons"
           >
             Manage Coupons
           </Link>
@@ -78,14 +79,14 @@ const DashbaordLayout = () => {
       <hr />
 
       {/* Shared Nav */}
-      <Link className="text-white font-semibold text-xl" to="/">
+      <Link className="text-white font-semibold text-xl p-5" to="/">
         Home
       </Link>
     </div>
   );
   return (
     <div className="flex min-h-screen">
-      <div className="bg-blue-400 w-1/4">{dashboardMenu}</div>
+      <div className="bg-blue-400 w-1/3 md:w-1/6">{dashboardMenu}</div>
       <div className="bg-base-200 flex-1">
         <Outlet />
       </div>

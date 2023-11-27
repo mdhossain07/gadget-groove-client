@@ -2,9 +2,11 @@ import { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useProducts from "../../hooks/useProducts";
+import PropTypes from "prop-types";
 
 const Accept = ({ id }) => {
   const axiosPublic = useAxiosPublic();
+  const [, refetch] = useProducts();
   const [status, setStatus] = useState(false);
 
   const handleStatus = (id) => {
@@ -15,6 +17,7 @@ const Accept = ({ id }) => {
           text: "You accepted this request!",
           icon: "success",
         });
+        refetch();
       }
       console.log(res.data);
     });
@@ -37,6 +40,10 @@ const Accept = ({ id }) => {
       </button>
     </div>
   );
+};
+
+Accept.propTypes = {
+  id: PropTypes.string,
 };
 
 export default Accept;

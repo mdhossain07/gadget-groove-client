@@ -2,33 +2,54 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "../MyProducts/Payment/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import useUser from "../../../../hooks/useUser";
+import Stats from "../../../../Components/Stats/Stats";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 const UserProfile = () => {
   const { userInfo } = useUser();
 
   return (
-    <div>
-      <h2>Welcome Back, {userInfo?.name}</h2>
-      <img className="w-[80px] rounded-full" src={userInfo?.image} alt="" />
-      <p>Email: {userInfo?.email}</p>
-      {userInfo?.membershipStatus ? (
-        <p>Membership Status: {userInfo?.membershipStatus} </p>
-      ) : (
-        <p>Membership Status: not verified </p>
-      )}
-      <p>
-        To Enjoy more exciting features of our Webiste, Be a member of our
-        website. Only on $99
-      </p>
+    <div className="p-10">
+      <h2 className="text-3xl font-semibold">Welcome Back, {userInfo?.name}</h2>
 
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
-      <button
-        className="btn btn-info"
-        onClick={() => document.getElementById("my_modal_1").showModal()}
-      >
-        Membership Subscribe
-      </button>
+      <div className="flex items-center gap-10">
+        <img
+          className="w-[100px] rounded-full mt-10"
+          src={userInfo?.image}
+          alt=""
+        />
+
+        <div className="space-y-2">
+          <p className="font-medium">Email: {userInfo?.email}</p>
+          {userInfo?.membershipStatus ? (
+            <p className="font-medium text-green-600">
+              Membership Status: {userInfo?.membershipStatus}
+            </p>
+          ) : (
+            <p className="font-medium text-red-500">
+              Membership Status: not verified{" "}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {!userInfo?.membershipStatus && (
+        <div>
+          <p>
+            To Enjoy more exciting features of our Webiste, Be a member of our
+            website. Only on 500 BDT.
+          </p>
+
+          {/* Open the modal using document.getElementById('ID').showModal() method */}
+          <button
+            className="btn btn-info"
+            onClick={() => document.getElementById("my_modal_1").showModal()}
+          >
+            Membership Subscribe
+          </button>
+        </div>
+      )}
+
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">Checkout Form</h3>
@@ -44,6 +65,8 @@ const UserProfile = () => {
           </div>
         </div>
       </dialog>
+
+      <Stats />
     </div>
   );
 };

@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import UpVote from "./UpVote";
 import PropTypes from "prop-types";
-import Container from "../../Components/Shared/Container";
 
-const ProductsCard = ({ product }) => {
+const ProductsCard = ({ product, refetch }) => {
   const {
     product_image,
     product_name,

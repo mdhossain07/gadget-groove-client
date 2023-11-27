@@ -10,7 +10,7 @@ const Products = () => {
   }, []);
   const axiosPublic = useAxiosPublic();
 
-  const { data, isPending } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await axiosPublic.get(
@@ -20,7 +20,7 @@ const Products = () => {
     },
   });
   const [tags, setTags] = useState("");
-  const [searchResults, setSearchResults] = useState(data);
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = () => {
     axiosPublic.get(`/api/v1/search-products?tags=${tags}`).then((res) => {
@@ -29,7 +29,11 @@ const Products = () => {
     });
   };
 
-  console.log(searchResults);
+  useEffect(() => {
+    if (data) {
+      setSearchResults(data);
+    }
+  }, [data]);
 
   return (
     <div>
@@ -50,7 +54,7 @@ const Products = () => {
           </button>
         </div>
 
-        {isPending ? (
+        {isLoading ? (
           <span className="mt-20 loading loading-spinner text-info tex-2xl text-center"></span>
         ) : (
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 justify-items-center">

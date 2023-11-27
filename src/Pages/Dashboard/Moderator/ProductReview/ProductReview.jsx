@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useProducts from "../../../../hooks/useProducts";
 import Accept from "../../../../Components/Accept/Accept";
 import Featured from "../../../../Components/Featured/Featured";
+import Reject from "../../../../Components/Reject/Reject";
 
 const ProductReview = () => {
   const [products] = useProducts();
@@ -50,7 +51,7 @@ const ProductReview = () => {
                 </td>
 
                 <td>
-                  <button className="btn btn-accent">Reject</button>
+                  <Reject id={product._id} />
                 </td>
                 <td>
                   <Link to={`/product/${product._id}`}>

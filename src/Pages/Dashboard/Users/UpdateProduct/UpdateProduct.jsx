@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { WithContext as ReactTags } from "react-tag-input";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import Title from "../../../../Components/Shared/Title";
 
 const imageApi = import.meta.env.VITE_Image_Hosting_API;
 const imageHostingKey = `https://api.imgbb.com/1/upload?key=${imageApi}`;
@@ -69,6 +70,7 @@ const UpdateProduct = () => {
   };
   return (
     <div>
+      <Title subHeading={"Latest Gadgets"} heading={"Update product"} />
       <form
         className="bg-[#F3F3F3] font-medium text-[#444444] mt-10 p-10 lg:w-1/2 mx-auto space-y-3"
         onSubmit={handleSubmit(onSubmit)}
@@ -76,7 +78,7 @@ const UpdateProduct = () => {
         <label htmlFor="">Product Name *</label>
         <br />
         <input
-          className="w-full py-2 my-2"
+          className="w-full py-2 my-2 indent-3"
           {...register("name")}
           defaultValue={product?.product_name}
         />
@@ -86,7 +88,7 @@ const UpdateProduct = () => {
             <br />
             <select
               defaultValue={product?.product_category}
-              className="py-2 w-full my-2"
+              className="py-2 w-full my-2 indent-2"
               {...register("category")}
             >
               <option value="phone">phone</option>
@@ -108,7 +110,7 @@ const UpdateProduct = () => {
         <label htmlFor="">Product Description *</label>
         <br />
         <textarea
-          className="my-2 w-full"
+          className="my-2 w-full indent-2 py-3"
           {...register("description")}
           cols="50"
           rows="5"
@@ -117,7 +119,7 @@ const UpdateProduct = () => {
         <br />
         <label htmlFor="">External Links</label>
         <input
-          className="py-2 my-2 w-full"
+          className="py-2 my-2 w-full indent-2"
           {...register("links")}
           defaultValue={product?.external_link}
         />
@@ -129,7 +131,7 @@ const UpdateProduct = () => {
         />
         <br />
         <hr />
-        <h2> Product Owners Info</h2>
+        <h2 className="text-blue-500 font-semibold"> Product Owners Info</h2>
 
         <div className="flex justify-between gap-10">
           <div className="flex-1">
@@ -138,12 +140,17 @@ const UpdateProduct = () => {
             <input
               className="w-full py-2 my-2"
               defaultValue={user?.displayName}
+              disabled
             />
           </div>
           <div className="flex-1">
             <label htmlFor="">Owners Email</label>
             <br />
-            <input className="py-2 my-2 w-full" defaultValue={user?.email} />
+            <input
+              className="py-2 my-2 w-full"
+              defaultValue={user?.email}
+              disabled
+            />
           </div>
         </div>
         <div className="flex-1">

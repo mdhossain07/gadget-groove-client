@@ -5,6 +5,7 @@ import { WithContext as ReactTags } from "react-tag-input";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import Title from "../../../../Components/Shared/Title";
 
 const imageApi = import.meta.env.VITE_Image_Hosting_API;
 const imageHostingKey = `https://api.imgbb.com/1/upload?key=${imageApi}`;
@@ -70,26 +71,33 @@ const AddProducts = () => {
 
   return (
     <div>
+      <Title subHeading={"Latest Gadgets"} heading={"Add a product"} />
       <form
         className="bg-[#F3F3F3] font-medium text-[#444444] mt-10 p-10 lg:w-1/2 mx-auto space-y-3"
         onSubmit={handleSubmit(onSubmit)}
       >
         <label htmlFor="">Product Name *</label>
         <br />
-        <input className="w-full py-2 my-2" {...register("name")} />
+        <input
+          required
+          className="indent-2 w-full py-2 my-2"
+          {...register("name")}
+        />
         <div className="flex justify-between gap-10">
           <div className="flex-1">
             <label htmlFor="">Select Category *</label>
             <br />
             <select
-              className="py-2 w-full my-2"
+              className="py-2 w-full my-2 indent-2"
               defaultValue="default"
+              required
               {...register("category")}
             >
               <option value="phone">phone</option>
               <option value="laptop">laptop</option>
               <option value="smartwatch">smartwatch</option>
               <option value="drone">drone</option>
+              <option value="headphone">headphone</option>
             </select>
           </div>
           <div className="flex-1">
@@ -99,34 +107,35 @@ const AddProducts = () => {
               tags={tags}
               handleDelete={handleDelete}
               handleAddition={handleAddition}
+              required
             />
           </div>
         </div>
         <label htmlFor="">Product Description *</label>
         <br />
         <textarea
-          className="my-2 w-full"
+          className="my-2 w-full indent-2 py-3"
           {...register("description")}
           cols="50"
           rows="5"
         ></textarea>
         <br />
         <label htmlFor="">External Links</label>
-        <input className="py-2 my-2 w-full" {...register("links")} />
+        <input className="py-2 my-2 w-full indent-2" {...register("links")} />
         <br />
         <input
           {...register("image")}
           type="file"
           className="file-input w-full max-w-xs"
+          required
         />
         <br />
         <hr />
-        <h2> Product Owners Info</h2>
+        <h2 className="text-blue-500 font-semibold"> Product Owners Info</h2>
 
         <div className="flex justify-between gap-10">
           <div className="flex-1">
-            <label htmlFor="">Owners Name</label>
-
+            <label htmlFor="">Name</label>
             <input
               className="w-full py-2 my-2"
               defaultValue={user?.displayName}
@@ -134,7 +143,7 @@ const AddProducts = () => {
             />
           </div>
           <div className="flex-1">
-            <label htmlFor="">Owners Email</label>
+            <label htmlFor="">Email</label>
             <br />
             <input
               className="py-2 my-2 w-full"

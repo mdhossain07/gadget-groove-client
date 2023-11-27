@@ -17,6 +17,7 @@ import ReportedContents from "../Pages/Dashboard/Moderator/ReportedContents/Repo
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUser/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import Payment from "../Pages/Dashboard/Users/MyProducts/Payment/Payment";
+import ManageCoupons from "../Pages/Dashboard/Admin/ManageCoupons/ManageCoupons";
 
 const routes = createBrowserRouter([
   {
@@ -67,7 +68,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/my-profile",
-        element: <UserProfile />,
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/add-products",
@@ -96,6 +101,10 @@ const routes = createBrowserRouter([
             <ManageUsers />
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/manage-coupons",
+        element: <ManageCoupons />,
       },
     ],
   },

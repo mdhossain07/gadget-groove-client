@@ -2,10 +2,12 @@ import { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
+import useProducts from "../../hooks/useProducts";
 
 const Featured = ({ id, status }) => {
   const axiosPublic = useAxiosPublic();
   const [featured, setFeatured] = useState(false);
+  const [, refetch] = useProducts();
 
   const handleFeatured = (id) => {
     axiosPublic.patch(`/api/v1/make-featured/${id}`).then((res) => {
@@ -16,6 +18,7 @@ const Featured = ({ id, status }) => {
           text: `You make this product Featured!`,
           icon: "success",
         });
+        refetch();
       }
     });
   };
