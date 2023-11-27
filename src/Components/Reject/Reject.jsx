@@ -3,8 +3,9 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useState } from "react";
 import useProducts from "../../hooks/useProducts";
+import PropTypes from "prop-types";
 
-const Reject = ({ id }) => {
+const Reject = ({ id, status }) => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const [rejected, setRejected] = useState(false);
@@ -32,11 +33,24 @@ const Reject = ({ id }) => {
 
   return (
     <div>
-      <button onClick={handleReject} className="btn btn-accent">
-        {rejected ? "Rejected" : "Reject"}
-      </button>
+      {rejected ? (
+        <h2 className="text-xl font-medium text-red-500">Rejected</h2>
+      ) : (
+        <div>
+          {status === "accepted" ? null : (
+            <button onClick={handleReject} className="btn btn-error">
+              Reject
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
+};
+
+Reject.propTypes = {
+  id: PropTypes.string,
+  status: PropTypes.string,
 };
 
 export default Reject;

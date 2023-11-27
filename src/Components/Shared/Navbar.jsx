@@ -7,7 +7,7 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
 
   const navItems = (
-    <div className="flex flex-col md:flex-row gap-3">
+    <div className="flex flex-col md:flex-row gap-3 absolute">
       <NavLink
         className={({ isActive }) =>
           isActive
@@ -43,7 +43,7 @@ const Navbar = () => {
   };
   return (
     <Container>
-      <div>
+      <div className="-mt-3">
         <div className="navbar bg-base-200`">
           <div className="navbar-start">
             <div className="dropdown">
@@ -65,7 +65,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52"
               >
                 {navItems}
               </ul>

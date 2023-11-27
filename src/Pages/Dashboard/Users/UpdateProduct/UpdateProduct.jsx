@@ -154,7 +154,7 @@ const UpdateProduct = () => {
           </div>
         </div>
         <div className="flex-1">
-          <img className="w-[80px] rounded-full" src={user?.photoURL} alt="" />
+          <img className="w-20 h-20 rounded-full" src={user?.photoURL} alt="" />
         </div>
         <input
           className="btn btn-warning"

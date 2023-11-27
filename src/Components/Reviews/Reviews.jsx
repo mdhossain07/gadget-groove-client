@@ -40,14 +40,14 @@ const Reviews = ({ id }) => {
         <label htmlFor="">Your Review *</label>
         <br />
         <textarea
-          className="my-2 w-full"
+          className="my-2 w-full p-3"
           {...register("review")}
           cols="50"
           rows="5"
         ></textarea>
         <br />
         <label htmlFor="">Rating</label>
-        <input className="py-2 my-2 w-full" {...register("rating")} />
+        <input className="py-2 my-2 w-full p-3" {...register("rating")} />
         <br />
 
         <hr />
@@ -65,7 +65,7 @@ const Reviews = ({ id }) => {
           </div>
           <div className="flex-1">
             <img
-              className="w-[80px] rounded-full"
+              className="w-20 h-20 rounded-full"
               src={user?.photoURL}
               alt=""
             />

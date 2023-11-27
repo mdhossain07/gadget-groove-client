@@ -4,10 +4,10 @@ import Swal from "sweetalert2";
 import useProducts from "../../hooks/useProducts";
 import PropTypes from "prop-types";
 
-const Accept = ({ id }) => {
+const Accept = ({ id, status }) => {
   const axiosPublic = useAxiosPublic();
   const [, refetch] = useProducts();
-  const [status, setStatus] = useState(false);
+  const [accept, setAccept] = useState(false);
 
   const handleStatus = (id) => {
     axiosPublic.patch(`/api/v1/update-status/${id}`).then((res) => {
@@ -25,25 +25,32 @@ const Accept = ({ id }) => {
 
   axiosPublic.get(`/api/v1/product/${id}`).then((res) => {
     if (res.data.status === "accepted") {
-      setStatus(true);
+      setAccept(true);
     }
   });
   return (
     <div>
-      <button
-        onClick={() => handleStatus(id)}
-        className={`btn btn-warning ${
-          status ? "cursor-not-allowed disabled:" : "enabled:"
-        }`}
-      >
-        {status ? "Accepted" : "Accept"}
-      </button>
+      {accept ? (
+        <h2 className="text-lg font-medium text-green-500">Aceepted</h2>
+      ) : (
+        <div>
+          {status === "rejected" ? null : (
+            <button
+              onClick={() => handleStatus(id)}
+              className={`btn btn-accent `}
+            >
+              Accept
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
 
 Accept.propTypes = {
   id: PropTypes.string,
+  status: PropTypes.string,
 };
 
 export default Accept;

@@ -8,7 +8,6 @@ const ProductReview = () => {
   const [products] = useProducts();
   return (
     <div>
-      <h2>Moderator</h2>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -47,11 +46,11 @@ const ProductReview = () => {
                   <Featured id={product._id} status={product.status} />
                 </td>
                 <td>
-                  <Accept id={product._id} />
+                  <Accept id={product._id} status={product.status} />
                 </td>
 
                 <td>
-                  <Reject id={product._id} />
+                  <Reject id={product._id} status={product.status} />
                 </td>
                 <td>
                   <Link to={`/product/${product._id}`}>

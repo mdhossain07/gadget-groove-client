@@ -31,14 +31,20 @@ const Featured = ({ id, status }) => {
 
   return (
     <div>
-      {status === "accepted" ? (
-        <button
-          onClick={() => handleFeatured(id)}
-          className={`btn btn-primary`}
-        >
-          {featured ? "Featured" : "Make Featured"}
-        </button>
-      ) : null}
+      {featured ? (
+        <h2 className="text-blue-500 font-medium text-lg">Featured</h2>
+      ) : (
+        <div>
+          {status === "accepted" ? (
+            <button
+              onClick={() => handleFeatured(id)}
+              className={`btn btn-primary`}
+            >
+              Make Featured
+            </button>
+          ) : null}
+        </div>
+      )}
     </div>
   );
 };
