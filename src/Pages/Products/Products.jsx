@@ -9,18 +9,26 @@ const Products = () => {
     document.title = "Gadget Groove | Products";
   }, []);
   const axiosPublic = useAxiosPublic();
+  const [page, setPage] = useState(0);
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["products"],
+  const {
+    data: { result, postCount },
+    isLoading,
+  } = useQuery({
+    queryKey: ["products", page],
+    initialData: { result: [], postCount: 0 },
     queryFn: async () => {
       const res = await axiosPublic.get(
-        `/api/v1/accepted-products?status=accepted`
+        `/api/v1/accepted-products?status=accepted&page=${page}`
       );
       return res.data;
     },
   });
   const [tags, setTags] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const totalPages = Math.ceil(postCount / 10);
+  const pages = [...new Array(totalPages).fill(0)];
+  console.log(pages);
 
   const handleSearch = () => {
     axiosPublic.get(`/api/v1/search-products?tags=${tags}`).then((res) => {
@@ -30,10 +38,10 @@ const Products = () => {
   };
 
   useEffect(() => {
-    if (data) {
-      setSearchResults(data);
+    if (result) {
+      setSearchResults(result);
     }
-  }, [data]);
+  }, [result]);
 
   return (
     <div>
@@ -63,6 +71,20 @@ const Products = () => {
             ))}
           </div>
         )}
+
+        <div className="my-10 flex justify-center">
+          {pages.map((item, index) => (
+            <button
+              className={`w-10 h-10 ${
+                page === index ? "bg-[#8C52FF] text-white " : "text-black"
+              } rounded-full mr-3`}
+              key={index}
+              onClick={() => setPage(index)}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
       </Container>
     </div>
   );
