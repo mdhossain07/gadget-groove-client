@@ -1,6 +1,16 @@
 import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useModerator from "../hooks/useModerator";
+import {
+  FaChartPie,
+  FaFileExcel,
+  FaHome,
+  FaHouseUser,
+  FaPlusSquare,
+  FaShopify,
+  FaTicketAlt,
+  FaUsers,
+} from "react-icons/fa";
 
 const DashbaordLayout = () => {
   const [isAdmin] = useAdmin();
@@ -12,36 +22,51 @@ const DashbaordLayout = () => {
       {isAdmin && (
         <div className="flex flex-col space-y-3 p-5">
           <Link
-            className="text-white font-semibold text-xl"
+            className="text-white font-semibold text-lg"
             to="/dashboard/manage-users"
           >
-            Manage Users
+            <div className="flex items-center gap-3">
+              <FaUsers />
+              Manage Users
+            </div>
           </Link>
           <Link
-            className="text-white font-semibold text-xl"
+            className="text-white font-semibold text-lg"
             to="/dashboard/statistics"
           >
-            Statistics
+            <div className="flex items-center gap-3">
+              <FaChartPie />
+              Statistics
+            </div>
           </Link>
           <Link
-            className="text-white font-semibold text-xl"
+            className="text-white font-semibold text-lg"
             to="/dashboard/manage-coupons"
           >
-            Manage Coupons
+            <div className="flex items-center gap-3">
+              <FaTicketAlt />
+              Statistics
+            </div>
           </Link>
 
           <Link
-            className="text-white font-semibold text-xl"
+            className="text-white font-semibold text-lg"
             to="/dashboard/product-review"
           >
-            Product Review
+            <div className="flex items-center gap-3">
+              <FaShopify />
+              Product Review
+            </div>
           </Link>
 
           <Link
-            className="text-white font-semibold text-xl"
+            className="text-white font-semibold text-lg"
             to="/dashboard/reported-contents"
           >
-            Reported Contents
+            <div className="flex items-center gap-3">
+              <FaFileExcel />
+              Reported Contents
+            </div>
           </Link>
         </div>
       )}
@@ -49,17 +74,23 @@ const DashbaordLayout = () => {
       {isModerator ? (
         <div className="flex flex-col space-y-3 p-5">
           <Link
-            className="text-white font-semibold text-xl"
+            className="text-white font-semibold text-lg"
             to="/dashboard/product-review"
           >
-            Product Review
+            <div className="flex items-center gap-3">
+              <FaShopify />
+              Product Review
+            </div>
           </Link>
 
           <Link
-            className="text-white font-semibold text-xl"
+            className="text-white font-semibold text-lg"
             to="/dashboard/reported-contents"
           >
-            Reported Contents
+            <div className="flex items-center gap-3">
+              <FaFileExcel />
+              Reported Contents
+            </div>
           </Link>
         </div>
       ) : (
@@ -69,23 +100,32 @@ const DashbaordLayout = () => {
           }`}
         >
           <Link
-            className="text-white font-semibold text-xl"
+            className="text-white font-semibold text-lg"
             to="/dashboard/my-profile"
           >
-            My Profile
+            <div className="flex items-center gap-3">
+              <FaHouseUser />
+              My Profile
+            </div>
           </Link>
           <Link
-            className="text-white font-semibold text-xl"
+            className="text-white font-semibold text-lg"
             to="/dashboard/add-products"
           >
-            Add Products
+            <div className="flex items-center gap-3">
+              <FaPlusSquare />
+              Add Products
+            </div>
           </Link>
 
           <Link
-            className="text-white font-semibold text-xl"
+            className="text-white font-semibold text-lg"
             to="/dashboard/my-products"
           >
-            My Products
+            <div className="flex items-center gap-3">
+              <FaShopify />
+              My Products
+            </div>
           </Link>
         </div>
       )}
@@ -93,8 +133,11 @@ const DashbaordLayout = () => {
       <hr />
 
       {/* Shared Nav */}
-      <Link className="text-white font-semibold text-xl p-5" to="/">
-        Home
+      <Link className="text-white font-semibold text-lg p-5" to="/">
+        <div className="flex gap-3 items-center p-5">
+          <FaHome />
+          Home
+        </div>
       </Link>
     </div>
   );

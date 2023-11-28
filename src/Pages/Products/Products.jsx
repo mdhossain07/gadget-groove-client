@@ -65,7 +65,7 @@ const Products = () => {
         {isLoading ? (
           <span className="mt-20 loading loading-spinner text-info tex-2xl text-center"></span>
         ) : (
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 justify-items-center">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 justify-items-center">
             {searchResults?.map((item) => (
               <ProductsCard key={item._id} product={item} />
             ))}

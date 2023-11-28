@@ -3,23 +3,25 @@ import useProducts from "../../../../hooks/useProducts";
 import Accept from "../../../../Components/Accept/Accept";
 import Featured from "../../../../Components/Featured/Featured";
 import Reject from "../../../../Components/Reject/Reject";
+import Title from "../../../../Components/Shared/Title";
 
 const ProductReview = () => {
   const [products] = useProducts();
   return (
     <div>
       <div className="overflow-x-auto">
+        <Title subHeading={"Gadget Groove"} heading={"Products Review"} />
         <table className="table">
           {/* head */}
           <thead>
             <tr>
-              <th>No.</th>
-              <th>Image</th>
-              <th>Product Name</th>
-              <th>Featured</th>
-              <th>Accept</th>
-              <th>Reject</th>
-              <th>Details</th>
+              <th className="text-lg">No.</th>
+              <th className="text-lg">Image</th>
+              <th className="text-lg">Product Name</th>
+              <th className="text-lg">Featured</th>
+              <th className="text-lg">Accept</th>
+              <th className="text-lg">Reject</th>
+              <th className="text-lg">Details</th>
             </tr>
           </thead>
           <tbody>
@@ -38,7 +40,7 @@ const ProductReview = () => {
                     </div>
                   </div>
                 </td>
-                <td>
+                <td className="font-medium">
                   {product.product_name}
                   <br />
                 </td>

@@ -12,14 +12,17 @@ const UserProfile = () => {
     <div className="p-10">
       <h2 className="text-3xl font-semibold">Welcome Back, {userInfo?.name}</h2>
 
-      <div className="flex items-center gap-10">
+      <Stats />
+
+      <div className="flex items-center gap-10 mt-10">
         <img
-          className="w-[100px] rounded-full mt-10"
+          className="w-20 h-20 rounded-full mt-10"
           src={userInfo?.image}
           alt=""
         />
 
-        <div className="space-y-2">
+        <div className="space-y-2 mt-5 ">
+          <p className="font-medium">Name: {userInfo?.name}</p>
           <p className="font-medium">Email: {userInfo?.email}</p>
           {userInfo?.membershipStatus ? (
             <p className="font-medium text-green-600">
@@ -34,10 +37,11 @@ const UserProfile = () => {
       </div>
 
       {!userInfo?.membershipStatus && (
-        <div>
+        <div className="bg-violet-500 text-white rounded-lg p-5 md:w-1/2 mx-auto mt-10 space-y-3">
           <p>
             To Enjoy more exciting features of our Webiste, Be a member of our
-            website. Only on 500 BDT.
+            website. Only on{" "}
+            <span className="text-2xl font-semibold">500 BDT.</span>
           </p>
 
           {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -65,8 +69,6 @@ const UserProfile = () => {
           </div>
         </div>
       </dialog>
-
-      <Stats />
     </div>
   );
 };

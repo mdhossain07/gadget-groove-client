@@ -27,7 +27,7 @@ const AddProducts = () => {
     setTags(tags.filter((tag, index) => index !== i));
   };
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
     const imagefile = { image: data.image[0] };
@@ -59,6 +59,7 @@ const AddProducts = () => {
           text: "New Product is added!",
           icon: "success",
         });
+        reset();
       } else {
         Swal.fire({
           title: "Failed!",
@@ -114,7 +115,7 @@ const AddProducts = () => {
         <label htmlFor="">Product Description *</label>
         <br />
         <textarea
-          className="my-2 w-full indent-2 py-3"
+          className="my-2 w-full indent-2 p-3"
           {...register("description")}
           cols="50"
           rows="5"

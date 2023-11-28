@@ -3,6 +3,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import Title from "../../../../Components/Shared/Title";
 
 const ReportedContents = () => {
   const axiosPublic = useAxiosPublic();
@@ -44,15 +45,16 @@ const ReportedContents = () => {
   return (
     <div>
       <div className="overflow-x-auto">
+        <Title subHeading={"Gadget Groove"} heading={"Reported Products"} />
         <table className="table">
           {/* head */}
           <thead>
             <tr>
-              <th>No.</th>
-              <th>Image</th>
-              <th>Product Name</th>
-              <th>Details</th>
-              <th>Action</th>
+              <th className="text-lg">No.</th>
+              <th className="text-lg">Image</th>
+              <th className="text-lg">Product Name</th>
+              <th className="text-lg">Details</th>
+              <th className="text-lg">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -71,7 +73,7 @@ const ReportedContents = () => {
                     </div>
                   </div>
                 </td>
-                <td>
+                <td className="font-medium">
                   {product.product_name}
                   <br />
                 </td>

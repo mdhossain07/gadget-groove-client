@@ -4,6 +4,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
+import Title from "../../../../Components/Shared/Title";
 
 const MyProducts = () => {
   const axiosPublic = useAxiosPublic();
@@ -48,17 +49,18 @@ const MyProducts = () => {
   return (
     <div>
       <div className="overflow-x-auto">
+        <Title heading={"My Products"} subHeading={"Gadget Groove"} />
         <table className="table">
           {/* head */}
           <thead>
             <tr>
-              <th>No.</th>
-              <th>Image</th>
-              <th>Product Name</th>
-              <th>Votes</th>
-              <th>Status</th>
-              <th>Edit</th>
-              <th>Action</th>
+              <th className="text-lg">No.</th>
+              <th className="text-lg">Image</th>
+              <th className="text-lg">Product Name</th>
+              <th className="text-lg">Votes</th>
+              <th className="text-lg">Status</th>
+              <th className="text-lg">Edit</th>
+              <th className="text-lg">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -77,12 +79,12 @@ const MyProducts = () => {
                     </div>
                   </div>
                 </td>
-                <td>
+                <td className="font-medium">
                   {product.product_name}
                   <br />
                 </td>
-                <td>{product.vote}</td>
-                <td>{product.status}</td>
+                <td className="font-medium text-lg">{product.vote}</td>
+                <td className="font-medium">{product.status}</td>
                 <th>
                   <Link to={`/dashboard/update-product/${product._id}`}>
                     <button className="p-3 rounded-lg bg-green-500 text-white">

@@ -46,11 +46,11 @@ const ManageUsers = () => {
           {/* head */}
           <thead>
             <tr>
-              <th>No.</th>
-              <th>Image</th>
-              <th>User Name</th>
-              <th>Action</th>
-              <th>Action</th>
+              <th className="text-lg">No.</th>
+              <th className="text-lg">Image</th>
+              <th className="text-lg">User Name</th>
+              <th className="text-lg">Action</th>
+              <th className="text-lg">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -66,7 +66,7 @@ const ManageUsers = () => {
                     </div>
                   </div>
                 </td>
-                <td>
+                <td className="font-medium">
                   {user.name}
                   <br />
                 </td>
@@ -79,7 +79,7 @@ const ManageUsers = () => {
                   ) : (
                     <button
                       onClick={() => handleModerator(user)}
-                      className="btn btn-neutral"
+                      className="btn btn-warning"
                     >
                       Make Moderator
                     </button>

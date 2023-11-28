@@ -36,7 +36,7 @@ const UpdateProduct = () => {
     setTags(tags.filter((tag, index) => index !== i));
   };
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
     const imagefile = { image: data.image[0] };
@@ -66,6 +66,7 @@ const UpdateProduct = () => {
             icon: "success",
           });
         }
+        reset();
       });
   };
   return (
@@ -95,6 +96,7 @@ const UpdateProduct = () => {
               <option value="laptop">laptop</option>
               <option value="smartwatch">smartwatch</option>
               <option value="drone">drone</option>
+              <option value="headphone">headphone</option>
             </select>
           </div>
           <div className="flex-1">
