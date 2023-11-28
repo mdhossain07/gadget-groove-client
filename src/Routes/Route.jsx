@@ -18,6 +18,7 @@ import ManageUsers from "../Pages/Dashboard/Admin/ManageUser/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import Payment from "../Pages/Dashboard/Users/MyProducts/Payment/Payment";
 import ManageCoupons from "../Pages/Dashboard/Admin/ManageCoupons/ManageCoupons";
+import Statistics from "../Pages/Dashboard/Admin/Statistics/Statistics";
 
 const routes = createBrowserRouter([
   {
@@ -104,7 +105,19 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/manage-coupons",
-        element: <ManageCoupons />,
+        element: (
+          <AdminRoute>
+            <ManageCoupons />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/statistics",
+        element: (
+          <AdminRoute>
+            <Statistics />
+          </AdminRoute>
+        ),
       },
     ],
   },

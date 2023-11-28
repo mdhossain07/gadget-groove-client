@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import UpVote from "./UpVote";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
-const ProductsCard = ({ product, refetch }) => {
+const ProductsCard = ({ product }) => {
   const {
     product_image,
     product_name,
@@ -13,6 +14,7 @@ const ProductsCard = ({ product, refetch }) => {
     product_tags,
   } = product;
   const tags = product_tags.join(", ");
+  const [votes, setVotes] = useState(vote);
 
   return (
     <div className="card w-full bg-base-100 shadow-xl">
@@ -30,10 +32,15 @@ const ProductsCard = ({ product, refetch }) => {
         <p className="text-gray-500">{product_description}</p>
         <p className="text-gray-500 text-sm">tags: {tags}</p>
         <div className="flex gap-3 items-center flex-grow">
-          <p className="text-gray-500 text-sm">upvotes: {vote}</p>
+          <p className="text-gray-500 text-sm">upvotes: {votes}</p>
         </div>
         <div className="card-actions justify-start flex-grow">
-          <UpVote id={_id} email={user_email} />
+          <UpVote
+            id={_id}
+            email={user_email}
+            votes={votes}
+            setVotes={setVotes}
+          />
         </div>
       </div>
     </div>

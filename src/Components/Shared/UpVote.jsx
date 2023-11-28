@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const UpVote = ({ id, email }) => {
+const UpVote = ({ id, email, votes, setVotes }) => {
   const axiosPublic = useAxiosPublic();
   const [, refetch] = useProducts();
   const { user } = useAuth();
@@ -30,6 +30,7 @@ const UpVote = ({ id, email }) => {
                 icon: "success",
               });
               refetch();
+              setVotes(votes + 1);
             }
           });
         } else {
@@ -75,6 +76,8 @@ const UpVote = ({ id, email }) => {
 UpVote.propTypes = {
   id: PropTypes.string,
   email: PropTypes.string,
+  votes: PropTypes.number,
+  setVotes: PropTypes.func,
 };
 
 export default UpVote;

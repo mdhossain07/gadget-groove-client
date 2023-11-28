@@ -7,6 +7,7 @@ import UpVote from "../../Components/Shared/UpVote";
 import DownVote from "../../Components/Shared/DownVote";
 import Swal from "sweetalert2";
 import Container from "../../Components/Shared/Container";
+import { useState } from "react";
 
 const ProductDetails = () => {
   const axiosPublic = useAxiosPublic();
@@ -38,6 +39,7 @@ const ProductDetails = () => {
   };
 
   const tags = data?.product_tags.join(", ");
+  const [votes, setVotes] = useState(data?.vote);
 
   return (
     <div className="mt-10">
@@ -48,11 +50,10 @@ const ProductDetails = () => {
             <h2 className="text-3xl font-semibold">{data?.product_name}</h2>
             <p className="text-gray-500">{data?.product_description}</p>
             <p className="text-gray-500">tags: {tags}</p>
-            <p className="text-gray-500">Total Vote: {data?.vote}</p>
+            <p className="text-gray-500">Total Vote: {votes}</p>
             <p className="text-gray-500">status: {data?.status}</p>
             <div className="flex gap-10">
-              {/* <button className="btn btn-primary">UpVote</button> */}
-              <UpVote id={id} />
+              <UpVote id={id} votes={votes} setVotes={setVotes} />
               <DownVote id={id} />
               <button
                 onClick={() => handleReport(id)}

@@ -19,7 +19,7 @@ const DashbaordLayout = () => {
           </Link>
           <Link
             className="text-white font-semibold text-xl"
-            to="/dashboard/manage-users"
+            to="/dashboard/statistics"
           >
             Statistics
           </Link>
@@ -28,6 +28,20 @@ const DashbaordLayout = () => {
             to="/dashboard/manage-coupons"
           >
             Manage Coupons
+          </Link>
+
+          <Link
+            className="text-white font-semibold text-xl"
+            to="/dashboard/product-review"
+          >
+            Product Review
+          </Link>
+
+          <Link
+            className="text-white font-semibold text-xl"
+            to="/dashboard/reported-contents"
+          >
+            Reported Contents
           </Link>
         </div>
       )}
