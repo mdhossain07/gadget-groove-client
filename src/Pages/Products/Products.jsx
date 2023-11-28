@@ -3,11 +3,14 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import ProductsCard from "../../Components/Shared/ProductsCard";
 import Container from "../../Components/Shared/Container";
 import { useEffect, useState } from "react";
+import Cover from "../../Components/Cover/Cover";
+import coverImg from "../../assets/images/ater-5.jpg";
 
 const Products = () => {
   useEffect(() => {
     document.title = "Gadget Groove | Products";
   }, []);
+
   const axiosPublic = useAxiosPublic();
   const [page, setPage] = useState(0);
 
@@ -28,7 +31,6 @@ const Products = () => {
   const [searchResults, setSearchResults] = useState([]);
   const totalPages = Math.ceil(postCount / 10);
   const pages = [...new Array(totalPages).fill(0)];
-  console.log(pages);
 
   const handleSearch = () => {
     axiosPublic.get(`/api/v1/search-products?tags=${tags}`).then((res) => {
@@ -45,8 +47,9 @@ const Products = () => {
 
   return (
     <div>
+      <Cover coverImg={coverImg} />
       <Container>
-        <div className="flex relative">
+        <div className="flex relative my-16">
           <input
             type="text"
             placeholder="Search"

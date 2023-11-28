@@ -45,6 +45,11 @@ const Footer = () => {
           </div>
         </nav>
       </footer>
+      <footer className="footer footer-center p-4 bg-gray-600 text-neutral-content">
+        <aside>
+          <p>Copyright © 2023 - All right reserved by Gadget Groove Ltd</p>
+        </aside>
+      </footer>
     </div>
   );
 };

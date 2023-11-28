@@ -7,7 +7,7 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
 
   const navItems = (
-    <div className="flex flex-col md:flex-row gap-3 absolute">
+    <div className="flex flex-col md:flex-row gap-3 ">
       <NavLink
         className={({ isActive }) =>
           isActive
@@ -43,7 +43,7 @@ const Navbar = () => {
   };
   return (
     <Container>
-      <div className="-mt-3">
+      <div className="">
         <div className="navbar bg-base-200`">
           <div className="navbar-start">
             <div className="dropdown">
