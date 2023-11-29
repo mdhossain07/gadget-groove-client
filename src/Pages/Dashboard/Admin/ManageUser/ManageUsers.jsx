@@ -38,7 +38,6 @@ const ManageUsers = () => {
     });
   };
 
-  console.log(users);
   return (
     <div>
       <div className="overflow-x-auto">
@@ -51,6 +50,7 @@ const ManageUsers = () => {
               <th className="text-lg">User Name</th>
               <th className="text-lg">Action</th>
               <th className="text-lg">Action</th>
+              <th className="text-lg">Membership Status</th>
             </tr>
           </thead>
           <tbody>
@@ -99,6 +99,7 @@ const ManageUsers = () => {
                     </button>
                   )}
                 </td>
+                <td className="font-medium">{user?.membershipStatus}</td>
               </tr>
             ))}
           </tbody>

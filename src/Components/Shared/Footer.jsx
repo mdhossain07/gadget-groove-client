@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div>
-      <footer className="footer flex items-center h-[250px] justify-around p-10 bg-neutral text-neutral-content">
+      <footer className="footer flex items-center h-[250px] justify-around p-10 bg-neutral text-neutral-content mt-32">
         <aside>
           <img className="w-[150px]" src="/gadget groove.png" alt="" />
           <p className="text-2xl font-semibold ml-2 -mt-5">Gadgets Groove</p>

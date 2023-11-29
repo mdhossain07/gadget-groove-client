@@ -14,8 +14,6 @@ const ManageCoupons = () => {
     },
   });
 
-  console.log(coupons);
-
   return (
     <div>
       <Title heading={"Manage Coupons"} subHeading={"Gadget Groove"} />

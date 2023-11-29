@@ -29,7 +29,7 @@ const Products = () => {
   });
   const [tags, setTags] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const totalPages = Math.ceil(postCount / 10);
+  const totalPages = Math.floor(postCount / 10);
   const pages = [...new Array(totalPages).fill(0)];
 
   const handleSearch = () => {

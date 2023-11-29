@@ -3,6 +3,7 @@ import Banner from "../../Components/Banner/Banner";
 import FeaturedProducts from "../../Components/FeaturedProducts/FeaturedProducts";
 import TrendingProducts from "../../Components/TrendingProducts/TrendingProducts";
 import SecurityBanner from "../../Components/SecurityBanner/SecurityBanner";
+import Coupns from "../../Components/Coupons/Coupns";
 
 const Home = () => {
   useEffect(() => {
@@ -14,6 +15,7 @@ const Home = () => {
       <FeaturedProducts />
       <SecurityBanner />
       <TrendingProducts />
+      <Coupns />
     </div>
   );
 };

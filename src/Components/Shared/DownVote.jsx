@@ -4,7 +4,7 @@ import useProducts from "../../hooks/useProducts";
 import { FaRegThumbsDown } from "react-icons/fa";
 import PropTypes from "prop-types";
 
-const DownVote = ({ id }) => {
+const DownVote = ({ id, downVotes, setDownVotes }) => {
   const axiosPublic = useAxiosPublic();
   const [, refetch] = useProducts();
 
@@ -16,8 +16,9 @@ const DownVote = ({ id }) => {
           text: "You downvoted this product!",
           icon: "success",
         });
+        refetch();
+        setDownVotes(downVotes + 1);
       }
-      refetch();
     });
   };
   return (
@@ -37,6 +38,8 @@ const DownVote = ({ id }) => {
 
 DownVote.propTypes = {
   id: PropTypes.string,
+  downVotes: PropTypes.number,
+  setDownVotes: PropTypes.func,
 };
 
 export default DownVote;

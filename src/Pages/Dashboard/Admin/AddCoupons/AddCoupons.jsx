@@ -4,7 +4,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
 const AddCoupons = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
@@ -19,10 +19,11 @@ const AddCoupons = () => {
       console.log(res.data);
       if (res.data.insertedId) {
         Swal.fire({
-          title: "Good job!",
-          text: "You upvoted this product!",
+          title: "Done!",
+          text: "You created this coupon!",
           icon: "success",
         });
+        reset();
       }
     });
   };
@@ -75,7 +76,7 @@ const AddCoupons = () => {
           <input
             className="btn btn-warning"
             type="submit"
-            value="Add Product"
+            value="Create Coupon"
           />
         </form>
       </div>

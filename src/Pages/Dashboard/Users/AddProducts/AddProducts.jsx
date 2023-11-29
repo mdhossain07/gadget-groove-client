@@ -47,6 +47,7 @@ const AddProducts = () => {
       product_description: data.description,
       product_tags: allTag,
       vote: 0,
+      downVote: 0,
       status: "pending",
       external_link: data.links,
       timestamp: new Date(),
