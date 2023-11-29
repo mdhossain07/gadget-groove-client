@@ -16,9 +16,10 @@ import Products from "../Pages/Products/Products";
 import ReportedContents from "../Pages/Dashboard/Moderator/ReportedContents/ReportedContents";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUser/ManageUsers";
 import AdminRoute from "./AdminRoute";
-import Payment from "../Pages/Dashboard/Users/MyProducts/Payment/Payment";
+import Contact from "../Pages/Contact/Contact";
 import ManageCoupons from "../Pages/Dashboard/Admin/ManageCoupons/ManageCoupons";
 import Statistics from "../Pages/Dashboard/Admin/Statistics/Statistics";
+import AddCoupons from "../Pages/Dashboard/Admin/AddCoupons/AddCoupons";
 
 const routes = createBrowserRouter([
   {
@@ -42,9 +43,10 @@ const routes = createBrowserRouter([
         ),
         loader: ({ params }) => fetch(`/api/v1/product/${params.id}`),
       },
+
       {
-        path: "/payment",
-        element: <Payment />,
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },
@@ -100,6 +102,14 @@ const routes = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/add-coupons",
+        element: (
+          <AdminRoute>
+            <AddCoupons />
           </AdminRoute>
         ),
       },

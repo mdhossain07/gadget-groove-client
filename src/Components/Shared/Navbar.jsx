@@ -11,8 +11,8 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? " text-[#8C52FF] text-lg  font-semibold underline"
-            : "text-black text-lg  font-semibold"
+            ? " text-[#8C52FF] font-semibold underline"
+            : "text-black font-semibold"
         }
         to="/"
       >
@@ -22,12 +22,23 @@ const Navbar = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? " text-[#8C52FF] text-lg  font-semibold underline"
-            : "text-black text-lg  font-semibold"
+            ? " text-[#8C52FF] font-semibold underline"
+            : "text-black font-semibold"
         }
         to="/products"
       >
         Products
+      </NavLink>
+
+      <NavLink
+        className={({ isActive }) =>
+          isActive
+            ? " text-[#8C52FF] font-semibold underline"
+            : "text-black font-semibold"
+        }
+        to="/contact"
+      >
+        Contact Us
       </NavLink>
     </div>
   );

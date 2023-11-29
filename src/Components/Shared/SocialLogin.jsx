@@ -13,13 +13,13 @@ const SocialLogin = () => {
     googleLogin()
       .then((res) => {
         const userInfo = {
-          name: res.user.displayName,
-          email: res.user.email,
+          name: res.user?.displayName,
+          email: res.user?.email,
         };
         axiosPublic.post("/api/v1/add-user", userInfo).then(() => {
           Swal.fire({
             title: "Good job!",
-            text: "User is created!",
+            text: "User Logged In!",
             icon: "success",
           });
           navigate("/");

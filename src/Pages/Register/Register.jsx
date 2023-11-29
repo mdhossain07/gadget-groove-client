@@ -101,7 +101,7 @@ const Register = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button className="bg-[#8C52FF] hover:bg-[#FF66C4] p-3 text-white rounded-lg">
+              <button className="bg-[#8C52FF] hover:bg-[#6670ff] p-3 cursor-pointer text-white rounded-lg">
                 Create Account
               </button>
             </div>

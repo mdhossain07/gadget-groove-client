@@ -47,7 +47,13 @@ const Products = () => {
 
   return (
     <div>
-      <Cover coverImg={coverImg} />
+      <Cover
+        coverImg={coverImg}
+        title={"Products"}
+        description={
+          "Find out all the latest & upgraded gadgets on our webiste"
+        }
+      />
       <Container>
         <div className="flex relative my-16">
           <input

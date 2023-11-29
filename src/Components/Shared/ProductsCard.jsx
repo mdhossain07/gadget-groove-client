@@ -29,7 +29,7 @@ const ProductsCard = ({ product }) => {
         <Link to={`/product/${_id}`}>
           <h2 className="card-title">{product_name}</h2>
         </Link>
-        <p className="text-gray-500">{product_description.slice(0, 50)}</p>
+        <p className="text-gray-500">{product_description.slice(0, 50)}...</p>
         <p className="text-gray-500 text-sm">tags: {tags}</p>
         <div className="flex gap-3 items-center flex-grow">
           <p className="text-gray-500 text-sm">upvotes: {votes}</p>

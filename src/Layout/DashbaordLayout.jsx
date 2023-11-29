@@ -39,13 +39,24 @@ const DashbaordLayout = () => {
               Statistics
             </div>
           </Link>
+
+          <Link
+            className="text-white font-semibold text-lg"
+            to="/dashboard/add-coupons"
+          >
+            <div className="flex items-center gap-3">
+              <FaTicketAlt />
+              Add Coupons
+            </div>
+          </Link>
+
           <Link
             className="text-white font-semibold text-lg"
             to="/dashboard/manage-coupons"
           >
             <div className="flex items-center gap-3">
               <FaTicketAlt />
-              Statistics
+              Manage Coupons
             </div>
           </Link>
 

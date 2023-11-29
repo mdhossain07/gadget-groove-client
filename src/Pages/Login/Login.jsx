@@ -16,7 +16,7 @@ const Login = () => {
   const navigate = useNavigate();
   const onSubmit = (data) => {
     loginUser(data.email, data.password)
-      .then((res) => {
+      .then(() => {
         Swal.fire({
           title: "Good job!",
           text: "User Logged in",
@@ -71,7 +71,7 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="bg-[#8C52FF] hover:bg-[#FF66C4] p-3 text-white rounded-lg">
+              <button className="bg-[#8C52FF] hover:bg-[#6670ff] cursor-pointer p-3 text-white rounded-lg">
                 Login Now
               </button>
             </div>

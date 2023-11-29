@@ -1,83 +1,48 @@
-import { useForm } from "react-hook-form";
+import { useQuery } from "@tanstack/react-query";
 import Title from "../../../../Components/Shared/Title";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
 
 const ManageCoupons = () => {
-  const { register, handleSubmit } = useForm();
   const axiosSecure = useAxiosSecure();
 
-  const onSubmit = async (data) => {
-    const couponInfo = {
-      code: data.code,
-      expiry_date: data.date,
-      amount: data.amount,
-      description: data.description,
-    };
+  const { data: coupons } = useQuery({
+    queryKey: ["coupons"],
+    initialData: [],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/api/v1/coupons");
+      return res.data;
+    },
+  });
 
-    axiosSecure.post("/api/v1/add-coupon", couponInfo).then((res) => {
-      console.log(res.data);
-      if (res.data.insertedId) {
-        Swal.fire({
-          title: "Good job!",
-          text: "You upvoted this product!",
-          icon: "success",
-        });
-      }
-    });
-  };
+  console.log(coupons);
+
   return (
     <div>
-      <div>
-        <Title subHeading={"Get Coupons"} heading={"Manage Coupons"} />
-        <form
-          className="bg-[#F3F3F3] font-medium text-[#444444] mt-10 p-10 lg:w-1/2 mx-auto space-y-3"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <label htmlFor="">Coupon Code *</label>
-          <br />
-          <input
-            required
-            className="indent-2 w-full py-2 my-2"
-            {...register("code")}
-          />
-          <div className="flex justify-between gap-10">
-            <div className="flex-1">
-              <label htmlFor="">Expiry Date *</label>
-              <br />
-              <input
-                type="date"
-                required
-                className="indent-2 w-full py-2 my-2"
-                {...register("date")}
-              />
-            </div>
-            <div className="flex-1">
-              <label htmlFor="">Discount Amount *</label>
-              <br />
-              <input
-                required
-                className="indent-2 w-full py-2 my-2"
-                {...register("amount")}
-              />
-            </div>
-          </div>
-          <label htmlFor="">Coupon Code Description *</label>
-          <br />
-          <textarea
-            className="my-2 w-full  p-3"
-            {...register("description")}
-            cols="50"
-            rows="5"
-          ></textarea>
-          <br />
+      <Title heading={"Manage Coupons"} subHeading={"Gadget Groove"} />
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th className="text-lg">No.</th>
+              <th className="text-lg">Coupon Code</th>
+              <th className="text-lg">Description</th>
+              <th className="text-lg">Expiry Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
 
-          <input
-            className="btn btn-warning"
-            type="submit"
-            value="Add Product"
-          />
-        </form>
+            {coupons.map((coupon, index) => (
+              <tr key={coupon._id}>
+                <th>{index + 1}</th>
+                <td>{coupon.code}</td>
+                <td>{coupon.description}</td>
+                <td>{coupon.expiry_date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

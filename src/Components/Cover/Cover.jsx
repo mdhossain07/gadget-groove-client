@@ -1,5 +1,6 @@
-const Cover = ({ coverImg }) => {
-  console.log(coverImg);
+import PropTypes from "prop-types";
+
+const Cover = ({ coverImg, title, description }) => {
   return (
     <div>
       <div
@@ -12,16 +13,20 @@ const Cover = ({ coverImg }) => {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Products</h1>
-            <p className="mb-5">
-              Find out all the latest gadgets on our website
-            </p>
+            <h1 className="mb-5 text-5xl font-bold">{title}</h1>
+            <p className="mb-5">{description}</p>
             <button className="btn btn-primary">Get Started</button>
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+Cover.propTypes = {
+  coverImg: PropTypes.element,
+  title: PropTypes.string,
+  description: PropTypes.number,
 };
 
 export default Cover;
