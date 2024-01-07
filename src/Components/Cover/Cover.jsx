@@ -4,7 +4,7 @@ const Cover = ({ coverImg, title, description }) => {
   return (
     <div>
       <div
-        className="hero h-[90vh] 
+        className="hero h-[90vh] bg-fixed
         "
         style={{
           backgroundImage: `url(${coverImg})`,

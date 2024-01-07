@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import Title from "../../../../Components/Shared/Title";
+import { useEffect } from "react";
 
 const ReportedContents = () => {
+  useEffect(() => {
+    document.title = "Gadget Groove | Reported Contents";
+  }, []);
+
   const axiosPublic = useAxiosPublic();
 
   const { data, refetch } = useQuery({
@@ -17,7 +22,7 @@ const ReportedContents = () => {
   });
 
   const handleRemove = (id) => {
-    console.log(id);
+    // console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",

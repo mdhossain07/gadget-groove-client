@@ -2,9 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
+
+  useEffect(() => {
+    document.title = "Gadget Groove | Manage Users";
+  }, []);
+
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {

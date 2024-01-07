@@ -3,9 +3,14 @@ import CheckoutForm from "../MyProducts/Payment/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import useUser from "../../../../hooks/useUser";
 import Stats from "../../../../Components/Stats/Stats";
+import { useEffect } from "react";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 const UserProfile = () => {
+  useEffect(() => {
+    document.title = "Gadget Groove | My Profile ";
+  }, []);
+
   const { userInfo } = useUser();
 
   return (

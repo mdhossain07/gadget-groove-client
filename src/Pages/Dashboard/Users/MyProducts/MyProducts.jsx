@@ -5,9 +5,15 @@ import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import Title from "../../../../Components/Shared/Title";
+import { useEffect } from "react";
 
 const MyProducts = () => {
   const axiosPublic = useAxiosPublic();
+
+  useEffect(() => {
+    document.title = "Gadget Groove | My Products";
+  }, []);
+
   const { user } = useAuth();
   const { data: myProducts = [], refetch } = useQuery({
     queryKey: ["myProducts", user?.email],

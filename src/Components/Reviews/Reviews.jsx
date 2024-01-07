@@ -3,11 +3,13 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
+import useProducts from "../../hooks/useProducts";
 
 const Reviews = ({ id }) => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const [, refetch] = useProducts();
 
   const onSubmit = async (data) => {
     const reviewInfo = {
@@ -27,6 +29,8 @@ const Reviews = ({ id }) => {
           text: "Review submitted!",
           icon: "success",
         });
+        reset();
+        refetch();
       }
     });
   };

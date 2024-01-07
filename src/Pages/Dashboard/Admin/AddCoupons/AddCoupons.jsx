@@ -2,10 +2,15 @@ import { useForm } from "react-hook-form";
 import Title from "../../../../Components/Shared/Title";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 const AddCoupons = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
+
+  useEffect(() => {
+    document.title = "Gadget Groove | Add Coupons";
+  }, []);
 
   const onSubmit = async (data) => {
     const couponInfo = {

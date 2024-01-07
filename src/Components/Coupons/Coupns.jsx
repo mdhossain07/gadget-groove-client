@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 const Coupns = () => {
   const axiosPublic = useAxiosPublic();
@@ -19,7 +20,7 @@ const Coupns = () => {
     },
   });
 
-  console.log(coupons);
+  // console.log(coupons);
   return (
     <div className="">
       <Title heading={"Get Discount"} subHeading={"Latest Gadgtes"} />
@@ -39,9 +40,14 @@ const Coupns = () => {
                         Coupon: {coupon.code}
                       </h1>
                       <p className="py-6 text-white">{coupon.description}</p>
-                      <button className="btn btn-primary text-white">
-                        Get Coupon
-                      </button>
+                      <p className="py-6 text-white">
+                        Coupon expiration: {coupon.expiry_date}
+                      </p>
+                      <Link to="/dashboard/my-profile">
+                        <button className="btn btn-primary text-white">
+                          Get Coupon
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

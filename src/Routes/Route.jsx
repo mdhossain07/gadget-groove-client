@@ -20,11 +20,13 @@ import Contact from "../Pages/Contact/Contact";
 import ManageCoupons from "../Pages/Dashboard/Admin/ManageCoupons/ManageCoupons";
 import Statistics from "../Pages/Dashboard/Admin/Statistics/Statistics";
 import AddCoupons from "../Pages/Dashboard/Admin/AddCoupons/AddCoupons";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

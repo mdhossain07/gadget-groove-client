@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../../hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { WithContext as ReactTags } from "react-tag-input";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
@@ -11,13 +11,17 @@ const imageApi = import.meta.env.VITE_Image_Hosting_API;
 const imageHostingKey = `https://api.imgbb.com/1/upload?key=${imageApi}`;
 
 const AddProducts = () => {
+  useEffect(() => {
+    document.title = "Gadget Groove | Add Products";
+  }, []);
+
   const { user } = useAuth();
   const [tags, setTags] = useState([]);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
 
   const allTag = tags.map((tag) => tag.text);
-  console.log(allTag);
+  // console.log(allTag);
 
   const handleAddition = (tag) => {
     setTags([...tags, tag]);

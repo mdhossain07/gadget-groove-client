@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import banner from "../../assets/images/pexels-michelangelo-buonarroti-8728388.jpg";
 
 import "swiper/css/navigation";
@@ -19,9 +20,11 @@ const Banner = () => {
             Introducing fashionable & gorgeous gadgets from design to stylish
             wearable
           </p>
-          <button className="bg-[#8C52FF] font-medium p-3 rounded-lg text-white">
-            Explore Now
-          </button>
+          <Link to="/products">
+            <button className="bg-[#8C52FF] font-medium p-3 rounded-lg text-white">
+              Explore Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>

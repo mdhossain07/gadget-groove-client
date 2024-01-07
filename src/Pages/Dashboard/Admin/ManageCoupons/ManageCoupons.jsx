@@ -1,9 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import Title from "../../../../Components/Shared/Title";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useEffect } from "react";
 
 const ManageCoupons = () => {
   const axiosSecure = useAxiosSecure();
+
+  useEffect(() => {
+    document.title = "Gadget Groove | Manage Coupons";
+  }, []);
 
   const { data: coupons } = useQuery({
     queryKey: ["coupons"],

@@ -58,7 +58,7 @@ const Products = () => {
         <div className="flex relative my-16">
           <input
             type="text"
-            placeholder="Search"
+            placeholder="search by tags..."
             className="input input-bordered w-1/2 mx-auto"
             // value={tags}
             onBlur={(e) => setTags(e.target.value)}

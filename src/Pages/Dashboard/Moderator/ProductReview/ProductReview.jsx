@@ -4,8 +4,13 @@ import Accept from "../../../../Components/Accept/Accept";
 import Featured from "../../../../Components/Featured/Featured";
 import Reject from "../../../../Components/Reject/Reject";
 import Title from "../../../../Components/Shared/Title";
+import { useEffect } from "react";
 
 const ProductReview = () => {
+  useEffect(() => {
+    document.title = "Gadget Groove | Products Review";
+  }, []);
+
   const [products] = useProducts();
   return (
     <div>
