@@ -2,6 +2,9 @@
 
 website live link: https://gadget-groove.web.app/
 
+Admin email: gadget@groove.com
+Admin password: 12345678
+
 Features:
 
 1. Users can add one product at a time to the website. but the users who purchase membership subscription can add multiuple products.
